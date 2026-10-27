@@ -19,7 +19,7 @@
       "title": "Mathematical Proofs — Chris Ozols",
       "description": "Proofs of published mathematical conjectures with reproducible Lean verification, exact statements, trust models, and prior-art notes. No novelty or priority is claimed.",
       "blurb": "Mathematical proofs with reproducible verification and supporting documentation.",
-      "introHtml": "<p>These are mathematical proofs I have made available with reproducible verification. For each problem, I searched for an existing proof and did not find one in the sources I examined. That is not a claim of novelty or historical priority. Each entry states exactly what is proved, how it is checked, and what the prior-art search covered.</p>",
+      "introHtml": "<p>These are mathematical proofs I have made available with reproducible verification. For each problem, I searched for an existing proof and did not find one in the sources I examined. That is not a claim of novelty or historical priority, and where an earlier proof has since come to light, its entry says so. Each entry states exactly what is proved, how it is checked, and what the prior-art search covered.</p>",
       "empty": "No proofs are listed yet."
     },
     "refutations": {

@@ -196,8 +196,16 @@ def render_home(site, collections):
     return page(site, '/', site['name'], site['description'], body, data)
 
 
+def prior_note(r, kind):
+    if not r['priority']['priorResolutionKnown']:
+        return ''
+    known = 'An earlier proof is known' if kind == 'proof' else 'Earlier refutations are known'
+    return f'<p class="trust"><strong>Prior work:</strong> {known}; see the entry.</p>\n'
+
+
 def render_index(site, key, records):
     meta = site['collections'][key]
+    kind = meta['kind']
     path = f'/{key}/'
     trail = [('Home', '/'), (meta['navLabel'], path)]
     entries = ''.join(f'''
@@ -207,7 +215,7 @@ def render_index(site, key, records):
 <p>{esc(r['summary'])}</p>
 <p class="trust"><strong>Verification:</strong> {esc(TRUST_LABELS[r['verification']['trustModel']])}.
 {esc(r['verification'].get('summary', ''))}</p>
-<p class="entry-links"><a href="{path}{esc(r['slug'])}/">Details and verification</a> ·
+{prior_note(r, kind)}<p class="entry-links"><a href="{path}{esc(r['slug'])}/">Details and verification</a> ·
 <a href="{esc(r['repository']['url'])}">GitHub repository</a></p>
 </article>''' for r in records)
     if not records:
