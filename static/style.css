@@ -32,8 +32,12 @@ body {
   font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 header.site, main { max-width: 46rem; margin: 0 auto; padding: 0 1rem; }
-header.site { border-bottom: 1px solid var(--rule); padding-top: .9rem; padding-bottom: .9rem; }
+header.site { border-bottom: 1px solid var(--rule); }
+header.site nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem 1.5rem; padding: .9rem 0; }
 header.site .home { font-weight: 600; color: var(--fg); text-decoration: none; }
+header.site ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
+header.site ul a, header.site ul a:visited { color: var(--link); }
+header.site ul a[aria-current="page"] { color: var(--fg); text-decoration: none; font-weight: 600; }
 main { padding-top: 1.5rem; padding-bottom: 3rem; }
 a { color: var(--link); text-underline-offset: .15em; }
 a:visited { color: var(--link-visited); }

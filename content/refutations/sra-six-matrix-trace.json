@@ -1,0 +1,155 @@
+{
+  "slug": "sra-six-matrix-trace",
+  "publicationStatus": "published",
+  "order": 1,
+  "title": "Sra's Six-Matrix Trace Inequality — Lean-Checked Counterexample",
+  "shortTitle": "Sra's six-matrix trace inequality (Δ₆ > 0)",
+  "description": "An explicit rational counterexample, checked in Lean with standard axioms, to Δ₆ > 0 for Sra's alternating sum of inverses of sums of six positive definite matrices (MathOverflow 263833).",
+  "summary": "Six explicit rational 3×3 positive definite matrices give Δ₆ ≈ −99.97 < 0, so the six-matrix trace consequence of Sra's quantum coupon collector conjecture fails. The underlying conjecture was already refuted by Sra, and this failure follows from his Theorem 8.4 by a short argument.",
+  "dateModified": "2026-10-27",
+  "keywords": [
+    "quantum coupon collector conjecture",
+    "Sra conjecture",
+    "MathOverflow 263833",
+    "alternating sum of matrix inverses",
+    "six-matrix trace positivity",
+    "positive definite matrices",
+    "counterexample",
+    "Lean 4",
+    "Mathlib"
+  ],
+  "problem": {
+    "name": "Six-matrix trace consequence of Sra's quantum coupon collector conjecture (Δ₆ > 0)",
+    "identifiers": [
+      "MathOverflow 263833 (S. Sra, 2017)",
+      "arXiv:2608.29595, Problem 8.1 and Appendix E"
+    ],
+    "alternateNames": [
+      "quantum coupon collector conjecture, trace form",
+      "alternating sum of inverses of sums of positive definite matrices"
+    ],
+    "sourceHtml": "Suvrit Sra, <a href=\"https://mathoverflow.net/questions/263833\">MathOverflow question 263833</a> (2017), reproduced as Problem 8.1 of S. Sra, <cite>GPT, the Counterexample Machine</cite>, <a href=\"https://arxiv.org/abs/2608.29595\">arXiv:2608.29595</a> (2026). The trace quantity Δ<sub><i>n</i></sub> and the remark that its sign is undecided for 6 ≤ <i>n</i> ≤ 9 are in Appendix E of that paper.",
+    "citations": [
+      {
+        "@type": "ScholarlyArticle",
+        "name": "GPT, the Counterexample Machine",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Suvrit Sra"
+          }
+        ],
+        "datePublished": "2026",
+        "identifier": "arXiv:2608.29595",
+        "url": "https://arxiv.org/abs/2608.29595"
+      }
+    ]
+  },
+  "verification": {
+    "trustModel": "lean-kernel",
+    "summary": "Lean 4.35.0 with Mathlib v4.35.0; all 18 audited declarations depend only on propext, Classical.choice, and Quot.sound, and the proof is replayed by Lean's kernel checker and the independent nanoda checker."
+  },
+  "priority": {
+    "priorResolutionKnown": true,
+    "statement": "An independently constructed counterexample. Sra refuted the underlying conjecture (arXiv:2608.29595, Theorem 8.4). His paper lists this six-matrix trace form as undecided, but its failure follows from Theorem 8.4 by a short congruence argument, given below. No novelty or priority is claimed.",
+    "earlier": [
+      {
+        "label": "S. Sra, arXiv:2608.29595, Theorem 8.4: six 3×3 matrices with a negative quadratic form of Q₆ (refutes the six-matrix Loewner-order statement)",
+        "url": "https://arxiv.org/html/2608.29595v1#S8"
+      },
+      {
+        "label": "S. Sra, arXiv:2608.29595, Appendix E: ten matrices with Δ₁₀ < 0 (the trace form for n = 10)",
+        "url": "https://arxiv.org/abs/2608.29595"
+      }
+    ]
+  },
+  "repository": {
+    "name": "sra-six-matrix-trace",
+    "url": "https://github.com/cozuya/sra-six-matrix-trace",
+    "programmingLanguage": "Lean 4"
+  },
+  "claimHtml": "<p>For real symmetric positive definite <i>d</i>×<i>d</i> matrices <i>X</i><sub>1</sub>, …, <i>X</i><sub><i>n</i></sub>, write <i>X</i><sub><i>S</i></sub> = Σ<sub><i>i</i>∈<i>S</i></sub> <i>X</i><sub><i>i</i></sub> and</p>\n<p class=\"formula\"><i>Q</i><sub><i>n</i></sub> = Σ<sub><i>k</i>=1</sub><sup><i>n</i></sup> (−1)<sup><i>k</i>+1</sup> Σ<sub>|<i>S</i>|=<i>k</i></sub> <i>X</i><sub><i>S</i></sub><sup>−1</sup>, &nbsp;&nbsp; Δ<sub><i>n</i></sub> = tr <i>Q</i><sub><i>n</i></sub> = Σ<sub>∅≠<i>S</i>⊆[<i>n</i>]</sub> (−1)<sup>|<i>S</i>|−1</sup> tr <i>X</i><sub><i>S</i></sub><sup>−1</sup>.</p>\n<p>Sra's question (MathOverflow 263833; Problem 8.1 of arXiv:2608.29595) asks whether <i>Q</i><sub><i>n</i></sub> ≻ 0. Positive definiteness implies Δ<sub><i>n</i></sub> &gt; 0. The paper proves Δ<sub><i>n</i></sub> &gt; 0 for <i>n</i> ≤ 5, gives a counterexample at <i>n</i> = 10, and lists the trace form as undecided for 6 ≤ <i>n</i> ≤ 9. The claim refuted here is the <i>n</i> = 6 trace form: Δ<sub>6</sub> &gt; 0 for every dimension <i>d</i> ≥ 1 and all six real symmetric positive definite <i>X</i><sub><i>i</i></sub>.</p>",
+  "counterexampleHtml": "<p>Let <i>E</i> = diag(1/100, 1, 1) and, for <i>t</i> ∈ {−3, −2, −1, 1, 2, 3}, <i>v</i><sub><i>t</i></sub> = (<i>t</i>², 200, 200<i>t</i>)<sup>T</sup> and <i>X</i><sub><i>t</i></sub> = <i>E</i> + <i>v</i><sub><i>t</i></sub><i>v</i><sub><i>t</i></sub><sup>T</sup>. These are six rational 3×3 symmetric positive definite matrices, and</p>\n<p class=\"formula\">−99.97093178 &lt; Δ<sub>6</sub>(<i>X</i><sub>−3</sub>, …, <i>X</i><sub>3</sub>) &lt; −99.97093177.</p>\n<p>The exact value is a rational number with a 376-digit numerator and a 374-digit denominator, stated in the Lean source.</p>",
+  "explanationHtml": "<p>Each <i>X</i><sub><i>t</i></sub> is the sum of a positive definite diagonal matrix and a positive semidefinite rank-one matrix, so it is positive definite, and every subset sum <i>X</i><sub><i>S</i></sub> is invertible. Evaluating all 63 nonempty-subset terms exactly gives Δ<sub>6</sub> &lt; 0, contradicting Δ<sub>6</sub> &gt; 0 (and also Δ<sub>6</sub> ≥ 0). Since a positive semidefinite matrix has nonnegative trace, the same tuple also shows <i>Q</i><sub>6</sub> is not positive semidefinite; that Loewner-order failure was already established by Sra's Theorem 8.4.</p>",
+  "verificationHtml": "<p>Formalized in Lean 4.35.0 with Mathlib v4.35.0 using Mathlib's own <code>Matrix</code>, <code>Matrix.PosDef</code>, <code>Matrix.trace</code>, and matrix inverse. The main theorem is <code>SraSixMatrix.six_matrix_trace_positivity_false : ¬ SixMatrixTracePositivity</code>; <code>trace_Q</code> proves Δ<sub><i>n</i></sub> = tr <i>Q</i><sub><i>n</i></sub> for all <i>n</i> and <i>d</i>, and <code>Verification.lean</code> restates the claim using Mathlib definitions only. The exact value is computed by a proved trace-of-inverse formula for 3×3 matrices and <code>norm_num</code>.</p>\n<p><b>Trust model:</b> Lean's kernel and the standard axioms <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>, for all 18 audited declarations. The sources contain no <code>sorry</code>, <code>admit</code>, custom axiom, <code>decide</code>, or <code>native_decide</code>. The exported proof is re-checked from an empty environment by Lean's kernel checker and by nanoda, an independent type checker. A separate Python verifier using only exact rational arithmetic recomputes Δ<sub>6</sub> by two inversion methods.</p>",
+  "priorArtHtml": "<ul>\n<li>Sra's Theorem 8.4 (arXiv:2608.29595) gives six rational 3×3 matrices with −96 &lt; <i>v</i><sup>T</sup><i>Q</i><sub>6</sub><i>v</i> &lt; −95, refuting the six-matrix Loewner-order statement. Appendix E gives ten matrices with Δ<sub>10</sub> &lt; 0.</li>\n<li>The six-matrix trace failure follows from Theorem 8.4 by an elementary common-congruence argument: if <i>v</i><sup>T</sup><i>Q</i><sub>6</sub>(<i>X</i>)<i>v</i> &lt; 0, then <i>Y</i><sub><i>i</i></sub> = <i>CX</i><sub><i>i</i></sub><i>C</i><sup>T</sup> for a suitable invertible <i>C</i> gives tr <i>Q</i><sub>6</sub>(<i>Y</i>) &lt; 0. Concretely, tr <i>Q</i><sub>6</sub>(<i>Y</i>) = tr(<i>Q</i><sub>6</sub>(<i>X</i>)<i>W</i>) with <i>W</i> = <i>C</i><sup>−1</sup><i>C</i><sup>−T</sup>, and <i>W</i> = <i>vv</i><sup>T</sup> + ε<i>I</i> makes it negative. The paper does not state this deduction, and its Appendix E lists 6 ≤ <i>n</i> ≤ 9 as undecided for the trace form; the deduction was made in a prior-art audit for this work on October 16, 2026.</li>\n<li>The witness here differs from both published tuples. Its only advantages are a compact parameterization and a machine-checked exact value; no minimality is claimed.</li>\n</ul>",
+  "provenanceHtml": "<p>Chris Ozols, with AI-assisted development and formalization. The counterexample was found during an AI-assisted investigation in October 2026 and first checked by exact rational arithmetic. A prior-art audit on October 16, 2026 concluded that the six-matrix trace failure is a routine consequence of Sra's Theorem 8.4. The Lean formalization, the independent Python verifier, and the repository were produced with Anthropic's Claude on October 27, 2026.</p>",
+  "links": [
+    {
+      "group": "Original problem",
+      "items": [
+        {
+          "label": "MathOverflow question 263833 (S. Sra, 2017)",
+          "url": "https://mathoverflow.net/questions/263833"
+        },
+        {
+          "label": "S. Sra, GPT, the Counterexample Machine (arXiv:2608.29595)",
+          "url": "https://arxiv.org/abs/2608.29595"
+        }
+      ]
+    },
+    {
+      "group": "Counterexample and formalization",
+      "items": [
+        {
+          "label": "GitHub repository",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace"
+        },
+        {
+          "label": "Statement as formalized (SraSixMatrix/Statement.lean)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/SraSixMatrix/Statement.lean"
+        },
+        {
+          "label": "Witness and exact evaluation (SraSixMatrix/Witness.lean)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/SraSixMatrix/Witness.lean"
+        },
+        {
+          "label": "Main theorems (SraSixMatrix/Main.lean)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/SraSixMatrix/Main.lean"
+        },
+        {
+          "label": "Mathlib-only restatements (Verification.lean)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/Verification.lean"
+        }
+      ]
+    },
+    {
+      "group": "Verification evidence",
+      "items": [
+        {
+          "label": "Verification transcript (evidence/verification.log)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/evidence/verification.log"
+        },
+        {
+          "label": "Theorem statements and axioms (evidence/kernel-check.log)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/evidence/kernel-check.log"
+        },
+        {
+          "label": "Independent exact-rational verifier (scripts/verify_witness.py)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/scripts/verify_witness.py"
+        },
+        {
+          "label": "Source manifest (SOURCE_SHA256SUMS)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/SOURCE_SHA256SUMS"
+        },
+        {
+          "label": "GitHub Actions verification runs",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/actions/workflows/verify.yml"
+        }
+      ]
+    },
+    {
+      "group": "Prior art and provenance",
+      "items": [
+        {
+          "label": "Prior art and caveats (README)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/README.md"
+        },
+        {
+          "label": "Citation metadata (CITATION.cff)",
+          "url": "https://github.com/cozuya/sra-six-matrix-trace/blob/main/CITATION.cff"
+        }
+      ]
+    }
+  ]
+}

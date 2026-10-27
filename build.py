@@ -117,9 +117,13 @@ def json_ld(data):
     return json.dumps(data, ensure_ascii=False, indent=1).replace('</', '<\\/')
 
 
-def page(site, path, title, description, body, data, og_type='website'):
+def page(site, path, title, description, body, data, section=None, og_type='website'):
     url = site['url'] + path
     canonical = '' if path == '/404.html' else f'<link rel="canonical" href="{esc(url)}">'
+    current = ' aria-current="page"'
+    nav = ''.join(
+        f'<li><a href="/{key}/"{current if key == section else ""}>'
+        f'{esc(value["navLabel"])}</a></li>' for key, value in site['collections'].items())
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -142,7 +146,9 @@ def page(site, path, title, description, body, data, og_type='website'):
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site"><a class="home" href="{esc(site['headerUrl'])}">{esc(site['name'])}</a></header>
+<header class="site">
+<nav aria-label="Site"><a class="home" href="{esc(site['headerUrl'])}">{esc(site['name'])}</a><ul>{nav}</ul></nav>
+</header>
 <main id="main">
 {body}
 </main>
@@ -216,7 +222,7 @@ def render_index(site, key, records):
              {'@type': 'ListItem', 'position': i, 'url': f'{site["url"]}{path}{r["slug"]}/',
               'name': r['shortTitle']} for i, r in enumerate(records, 1)]}},
         breadcrumbs(site, trail), person(site)]}
-    return page(site, path, meta['title'], meta['description'], body, data)
+    return page(site, path, meta['title'], meta['description'], body, data, section=key)
 
 
 def render_detail(site, key, kind, r):
@@ -277,7 +283,7 @@ def render_detail(site, key, kind, r):
     if problem.get('citations'):
         article['citation'] = problem['citations']
     data = {'@context': 'https://schema.org', '@graph': [article, breadcrumbs(site, trail), person(site)]}
-    return page(site, path, r['title'], r['description'], body, data, og_type='article')
+    return page(site, path, r['title'], r['description'], body, data, section=key, og_type='article')
 
 
 def render_404(site):

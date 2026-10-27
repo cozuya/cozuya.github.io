@@ -25,7 +25,7 @@
       "navLabel": "Refutations",
       "heading": "Mathematical refutations",
       "title": "Mathematical Refutations — Chris Ozols",
-      "description": "Counterexamples to published mathematical claims, with exact witnesses, reproducible verification, and prior-art notes, including disclosure of earlier refutations.",
+      "description": "Counterexamples to published mathematical claims, with exact witnesses, Lean verification, and prior-art notes, including disclosure of earlier refutations.",
       "introHtml": "<p>These are counterexamples and refutations from my mathematical investigations. Each entry gives the statement being challenged, the counterexample, and the available verification. Prior-art searches and known earlier results, including earlier refutations, are documented with each entry.</p>",
       "empty": "No entries are published yet. Entries are added once the counterexample can be checked independently and its prior-art notes, including any earlier refutations, are complete."
     }
