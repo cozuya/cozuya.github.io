@@ -120,6 +120,9 @@ def json_ld(data):
 def page(site, path, title, description, body, data, section=None, og_type='website'):
     url = site['url'] + path
     canonical = '' if path == '/404.html' else f'<link rel="canonical" href="{esc(url)}">'
+    verification = ''
+    if path == '/' and site.get('googleSiteVerification'):
+        verification = f'\n<meta name="google-site-verification" content="{esc(site["googleSiteVerification"])}">'
     current = ' aria-current="page"'
     nav = ''.join(
         f'<li><a href="/{key}/"{current if key == section else ""}>'
@@ -130,7 +133,7 @@ def page(site, path, title, description, body, data, section=None, og_type='webs
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
-<meta name="description" content="{esc(description)}">
+<meta name="description" content="{esc(description)}">{verification}
 {canonical}
 <meta property="og:type" content="{og_type}">
 <meta property="og:site_name" content="{esc(site['name'])}">
