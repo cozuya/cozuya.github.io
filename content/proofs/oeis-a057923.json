@@ -1,24 +1,46 @@
 {
   "slug": "oeis-a057923",
   "publicationStatus": "published",
-  "order": 2,
+  "order": 3,
   "title": "OEIS A057923 — Two-Step Monotonicity Proof Available",
   "shortTitle": "OEIS A057923: two-step monotonicity",
   "description": "Lean-verified proof of Robert Israel's 2017 conjecture for OEIS A057923, the greedy bitwise-OR sequence: a(n+2) > a(n) for every n ≥ 0.",
   "summary": "The greedy bitwise-OR sequence OEIS A057923 satisfies a(n+2) > a(n) for every n ≥ 0, so its even-indexed and odd-indexed subsequences are both strictly increasing. This is Robert Israel's two-step monotonicity conjecture.",
   "dateModified": "2026-10-27",
-  "keywords": ["OEIS A057923", "A057923", "Robert Israel conjecture", "two-step monotonicity", "a(n+2) > a(n)", "greedy bitwise OR sequence", "Larry Reeves", "A051145", "Lean 4", "formal proof"],
+  "keywords": [
+    "OEIS A057923",
+    "A057923",
+    "Robert Israel conjecture",
+    "two-step monotonicity",
+    "a(n+2) > a(n)",
+    "greedy bitwise OR sequence",
+    "Larry Reeves",
+    "A051145",
+    "Lean 4",
+    "formal proof"
+  ],
   "problem": {
     "name": "Robert Israel's two-step monotonicity conjecture for OEIS A057923",
-    "identifiers": ["OEIS A057923", "conjecture by Robert Israel, August 13, 2017", "sequence by Larry Reeves, October 3, 2000"],
-    "alternateNames": ["A057923 monotonicity conjecture", "A057923 a(n+2) > a(n)", "greedy bitwise OR sequence two-step increase"],
+    "identifiers": [
+      "OEIS A057923",
+      "conjecture by Robert Israel, August 13, 2017",
+      "sequence by Larry Reeves, October 3, 2000"
+    ],
+    "alternateNames": [
+      "A057923 monotonicity conjecture",
+      "A057923 a(n+2) > a(n)",
+      "greedy bitwise OR sequence two-step increase"
+    ],
     "sourceHtml": "<a href=\"https://oeis.org/A057923\">OEIS A057923</a>. The sequence is credited to Larry Reeves (October 3, 2000); the conjecture was added by Robert Israel on August 13, 2017 (<a href=\"https://oeis.org/history?seq=A057923\">revision history</a>).",
     "citations": [
       {
         "@type": "WebPage",
         "name": "A057923 — The On-Line Encyclopedia of Integer Sequences",
         "url": "https://oeis.org/A057923",
-        "publisher": {"@type": "Organization", "name": "The OEIS Foundation"}
+        "publisher": {
+          "@type": "Organization",
+          "name": "The OEIS Foundation"
+        }
       }
     ]
   },
@@ -42,27 +64,81 @@
   "priorArtHtml": "<p>A bounded prior-art audit on October 15, 2026, before the solving attempt, concluded that the conjecture was still listed as conjectural and located no prior resolution. It inspected the OEIS entry, its internal record and full revision history, Robert Israel's Maple program, the related sequences <a href=\"https://oeis.org/A051145\">A051145</a>, <a href=\"https://oeis.org/A057924\">A057924</a>, and <a href=\"https://oeis.org/A057925\">A057925</a>, the jOEIS and LODA implementations, a C++ program by Rémy Sigrist, and public formal-mathematics collections (Google DeepMind's formal-conjectures, OpenAI's mathematics release, and the-omega-institute's repository).</p>\n<p><b>Closely related earlier ingredients:</b> Israel's 2017 Maple search starts at the lower bound (<i>x</i> ∨ <i>y</i>) − <i>y</i>, and Charlie Neder's October 12, 2018 update formula for A051145 clears the bits of the preceding term. If Neder's formula is assumed to generate the greedy sequence with seeds 0, 2 (it is stated for seeds 0, 1, and no inspected source proves the 0, 2 case), the two combine into a short deduction of the conjecture. The inspected sources state neither a proof nor an explicit monotonicity argument. The proof here derives disjointness directly from greedy minimality and does not assume Neder's formula.</p>\n<p><b>Limits:</b> direct SeqFan archive access failed, and search-engine and GitHub index limits prevent an exhaustive negative conclusion.</p>",
   "provenanceHtml": "<p>Chris Ozols, with AI-assisted proof development and formalization; individual model names are not recorded. The status audit, solving prompt, returned proof, and first successful Lean check were recorded on October 15, 2026 (America/Chicago). The original prompt, returned proof, and formalization are retained unchanged in the repository with their SHA-256 hashes.</p>",
   "links": [
-    {"group": "Original problem", "items": [
-      {"label": "OEIS A057923", "url": "https://oeis.org/A057923"},
-      {"label": "A057923 revision history", "url": "https://oeis.org/history?seq=A057923"}
-    ]},
-    {"group": "Proof and formalization", "items": [
-      {"label": "GitHub repository", "url": "https://github.com/cozuya/oeis-a057923"},
-      {"label": "Readable statement and proof (README.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/README.md"},
-      {"label": "Lean proof (A057923.lean)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/A057923.lean"},
-      {"label": "Exact-statement check (Verification.lean)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/Verification.lean"},
-      {"label": "Verification script (scripts/verify.py)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/scripts/verify.py"}
-    ]},
-    {"group": "Verification evidence", "items": [
-      {"label": "GitHub Actions verification runs and reports", "url": "https://github.com/cozuya/oeis-a057923/actions/workflows/verify.yml"}
-    ]},
-    {"group": "Prior art and provenance", "items": [
-      {"label": "Prior-art audit (PRIOR_ART.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/PRIOR_ART.md"},
-      {"label": "Discovery summary (DISCOVERY.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/DISCOVERY.md"},
-      {"label": "Provenance (PROVENANCE.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/PROVENANCE.md"},
-      {"label": "Original prompt (PROMPT.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/PROMPT.md"},
-      {"label": "Returned proof, unchanged (RESULTS.txt)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/RESULTS.txt"},
-      {"label": "Citation metadata (CITATION.cff)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/CITATION.cff"}
-    ]}
+    {
+      "group": "Original problem",
+      "items": [
+        {
+          "label": "OEIS A057923",
+          "url": "https://oeis.org/A057923"
+        },
+        {
+          "label": "A057923 revision history",
+          "url": "https://oeis.org/history?seq=A057923"
+        }
+      ]
+    },
+    {
+      "group": "Proof and formalization",
+      "items": [
+        {
+          "label": "GitHub repository",
+          "url": "https://github.com/cozuya/oeis-a057923"
+        },
+        {
+          "label": "Readable statement and proof (README.md)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/README.md"
+        },
+        {
+          "label": "Lean proof (A057923.lean)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/A057923.lean"
+        },
+        {
+          "label": "Exact-statement check (Verification.lean)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/Verification.lean"
+        },
+        {
+          "label": "Verification script (scripts/verify.py)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/scripts/verify.py"
+        }
+      ]
+    },
+    {
+      "group": "Verification evidence",
+      "items": [
+        {
+          "label": "GitHub Actions verification runs and reports",
+          "url": "https://github.com/cozuya/oeis-a057923/actions/workflows/verify.yml"
+        }
+      ]
+    },
+    {
+      "group": "Prior art and provenance",
+      "items": [
+        {
+          "label": "Prior-art audit (PRIOR_ART.md)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/PRIOR_ART.md"
+        },
+        {
+          "label": "Discovery summary (DISCOVERY.md)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/DISCOVERY.md"
+        },
+        {
+          "label": "Provenance (PROVENANCE.md)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/PROVENANCE.md"
+        },
+        {
+          "label": "Original prompt (PROMPT.md)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/PROMPT.md"
+        },
+        {
+          "label": "Returned proof, unchanged (RESULTS.txt)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/RESULTS.txt"
+        },
+        {
+          "label": "Citation metadata (CITATION.cff)",
+          "url": "https://github.com/cozuya/oeis-a057923/blob/main/CITATION.cff"
+        }
+      ]
+    }
   ]
 }

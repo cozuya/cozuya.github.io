@@ -1,7 +1,7 @@
 {
   "slug": "taxicab-erdos-mordell",
   "publicationStatus": "published",
-  "order": 1,
+  "order": 2,
   "title": "Taxicab Erdős–Mordell Conjecture 1 — Proof Available",
   "shortTitle": "Taxicab Erdős–Mordell Conjecture 1",
   "description": "Lean-verified proof of Petrović–Malešević–Banjac Conjecture 1: the taxicab Erdős–Mordell inequality for every triangle orientation, with sharp constant 3/2.",

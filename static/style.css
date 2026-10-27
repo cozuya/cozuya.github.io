@@ -31,15 +31,10 @@ body {
   color: var(--fg);
   font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-header.site, main, footer.site { max-width: 46rem; margin: 0 auto; padding: 0 1rem; }
-header.site { border-bottom: 1px solid var(--rule); }
-header.site nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem 1.5rem; padding: .9rem 0; }
+header.site, main { max-width: 46rem; margin: 0 auto; padding: 0 1rem; }
+header.site { border-bottom: 1px solid var(--rule); padding-top: .9rem; padding-bottom: .9rem; }
 header.site .home { font-weight: 600; color: var(--fg); text-decoration: none; }
-header.site ul { display: flex; gap: 1.25rem; list-style: none; margin: 0; padding: 0; }
-header.site ul a, header.site ul a:visited { color: var(--link); }
-header.site ul a[aria-current="page"] { color: var(--fg); text-decoration: none; font-weight: 600; }
 main { padding-top: 1.5rem; padding-bottom: 3rem; }
-footer.site { border-top: 1px solid var(--rule); color: var(--muted); font-size: .9rem; padding-top: .75rem; padding-bottom: 2rem; }
 a { color: var(--link); text-underline-offset: .15em; }
 a:visited { color: var(--link-visited); }
 h1 { font-size: 1.75rem; line-height: 1.25; margin: .5rem 0 .75rem; }
@@ -67,6 +62,5 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 .entry h2 { margin-top: .75rem; }
 .ident { color: var(--muted); font-size: .92rem; }
 .empty { color: var(--muted); }
-.collection h3 { margin-top: 1.5rem; }
 .skip { position: absolute; left: -999px; }
 .skip:focus { left: 1rem; top: .5rem; background: var(--bg); padding: .25rem .5rem; }

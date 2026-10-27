@@ -117,15 +117,9 @@ def json_ld(data):
     return json.dumps(data, ensure_ascii=False, indent=1).replace('</', '<\\/')
 
 
-def page(site, path, title, description, body, data, section=None, og_type='website'):
+def page(site, path, title, description, body, data, og_type='website'):
     url = site['url'] + path
     canonical = '' if path == '/404.html' else f'<link rel="canonical" href="{esc(url)}">'
-    current = ' aria-current="page"'
-    nav = ''.join(
-        f'<li><a href="/{key}/"{current if key == section else ""}>'
-        f'{esc(value["navLabel"])}</a></li>' for key, value in site['collections'].items())
-    footer_links = ' · '.join(f'<a href="{esc(link["url"])}">{esc(link["label"])}</a>'
-                              for link in site['footerLinks'])
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -139,6 +133,8 @@ def page(site, path, title, description, body, data, section=None, og_type='webs
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
 <meta property="og:url" content="{esc(url)}">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="stylesheet" href="/style.css">
 <script type="application/ld+json">
 {json_ld(data)}
@@ -146,13 +142,10 @@ def page(site, path, title, description, body, data, section=None, og_type='webs
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site">
-<nav aria-label="Site"><a class="home" href="/">{esc(site['name'])}</a><ul>{nav}</ul></nav>
-</header>
+<header class="site"><a class="home" href="{esc(site['headerUrl'])}">{esc(site['name'])}</a></header>
 <main id="main">
 {body}
 </main>
-<footer class="site"><p>{esc(site['name'])} · {footer_links}</p></footer>
 </body>
 </html>
 '''
@@ -160,7 +153,7 @@ def page(site, path, title, description, body, data, section=None, og_type='webs
 
 def person(site):
     return {'@type': 'Person', '@id': site['url'] + '/#person', 'name': site['name'],
-            'jobTitle': site['jobTitle'], 'url': site['url'] + '/', 'sameAs': site['sameAs']}
+            'url': site['url'] + '/', 'sameAs': site['sameAs']}
 
 
 def breadcrumbs(site, trail):
@@ -175,18 +168,9 @@ def breadcrumb_nav(trail):
             f'<li aria-current="page">{esc(trail[-1][0])}</li></ol></nav>')
 
 
-def render_home(site, collections):
-    cards = ''.join(f'''
-<section class="collection">
-<h3><a href="/{key}/">{esc(value['navLabel'])}</a></h3>
-<p>{esc(value['blurb'])}</p>
-<p><a href="/{key}/">View {esc(value['navLabel'].lower())}</a></p>
-</section>''' for key, value in site['collections'].items())
+def render_home(site):
     body = f'''<h1>{esc(site['name'])}</h1>
-<p class="lede">{esc(site['jobTitle'])}.</p>
-{site['homeIntroHtml']}
-<h2>Recent mathematical work</h2>
-{cards}'''
+<p class="lede">{esc(site['tagline'])}</p>'''
     data = {'@context': 'https://schema.org', '@graph': [
         {'@type': 'WebSite', '@id': site['url'] + '/#website', 'url': site['url'] + '/',
          'name': site['name'], 'inLanguage': 'en'},
@@ -232,7 +216,7 @@ def render_index(site, key, records):
              {'@type': 'ListItem', 'position': i, 'url': f'{site["url"]}{path}{r["slug"]}/',
               'name': r['shortTitle']} for i, r in enumerate(records, 1)]}},
         breadcrumbs(site, trail), person(site)]}
-    return page(site, path, meta['title'], meta['description'], body, data, section=key)
+    return page(site, path, meta['title'], meta['description'], body, data)
 
 
 def render_detail(site, key, kind, r):
@@ -293,7 +277,7 @@ def render_detail(site, key, kind, r):
     if problem.get('citations'):
         article['citation'] = problem['citations']
     data = {'@context': 'https://schema.org', '@graph': [article, breadcrumbs(site, trail), person(site)]}
-    return page(site, path, r['title'], r['description'], body, data, section=key, og_type='article')
+    return page(site, path, r['title'], r['description'], body, data, og_type='article')
 
 
 def render_404(site):
@@ -325,7 +309,7 @@ def main():
     if out.exists():
         shutil.rmtree(out)
     shutil.copytree(STATIC, out)
-    pages = {'/': (render_home(site, collections), site['dateModified'])}
+    pages = {'/': (render_home(site), site['dateModified'])}
     for key, records in collections.items():
         updated = max([site['dateModified']] + [r['dateModified'] for r in records])
         pages[f'/{key}/'] = (render_index(site, key, records), updated)

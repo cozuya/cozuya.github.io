@@ -1,7 +1,7 @@
 {
   "slug": "gyires-permanent-4x4",
   "publicationStatus": "published",
-  "order": 3,
+  "order": 1,
   "title": "Gyires' Permanent Inequality — n=4 Proof Available",
   "shortTitle": "Gyires' permanent inequality, n = 4",
   "description": "Lean-checked proof of the n = 4 case of Gyires' permanent inequality (Cheon–Wanless Conjecture 20), with equality only at J₄. Uses native_decide; general n is not addressed.",
