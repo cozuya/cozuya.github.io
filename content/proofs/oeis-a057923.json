@@ -1,0 +1,68 @@
+{
+  "slug": "oeis-a057923",
+  "publicationStatus": "published",
+  "order": 2,
+  "title": "OEIS A057923 — Two-Step Monotonicity Proof Available",
+  "shortTitle": "OEIS A057923: two-step monotonicity",
+  "description": "Lean-verified proof of Robert Israel's 2017 conjecture for OEIS A057923, the greedy bitwise-OR sequence: a(n+2) > a(n) for every n ≥ 0.",
+  "summary": "The greedy bitwise-OR sequence OEIS A057923 satisfies a(n+2) > a(n) for every n ≥ 0, so its even-indexed and odd-indexed subsequences are both strictly increasing. This is Robert Israel's two-step monotonicity conjecture.",
+  "dateModified": "2026-10-27",
+  "keywords": ["OEIS A057923", "A057923", "Robert Israel conjecture", "two-step monotonicity", "a(n+2) > a(n)", "greedy bitwise OR sequence", "Larry Reeves", "A051145", "Lean 4", "formal proof"],
+  "problem": {
+    "name": "Robert Israel's two-step monotonicity conjecture for OEIS A057923",
+    "identifiers": ["OEIS A057923", "conjecture by Robert Israel, August 13, 2017", "sequence by Larry Reeves, October 3, 2000"],
+    "alternateNames": ["A057923 monotonicity conjecture", "A057923 a(n+2) > a(n)", "greedy bitwise OR sequence two-step increase"],
+    "sourceHtml": "<a href=\"https://oeis.org/A057923\">OEIS A057923</a>. The sequence is credited to Larry Reeves (October 3, 2000); the conjecture was added by Robert Israel on August 13, 2017 (<a href=\"https://oeis.org/history?seq=A057923\">revision history</a>).",
+    "citations": [
+      {
+        "@type": "WebPage",
+        "name": "A057923 — The On-Line Encyclopedia of Integer Sequences",
+        "url": "https://oeis.org/A057923",
+        "publisher": {"@type": "Organization", "name": "The OEIS Foundation"}
+      }
+    ]
+  },
+  "verification": {
+    "trustModel": "lean-kernel",
+    "summary": "Lean 4.35.0 using only Lean's standard library (no Mathlib); the audited checks depend only on propext, Classical.choice, and Quot.sound."
+  },
+  "priority": {
+    "priorResolutionKnown": false,
+    "statement": "I did not find an earlier explicit proof in the sources I examined. Older OEIS material contains closely related ingredients, described below. This is not a claim of novelty or historical priority, and the OEIS entry has not been updated. The purpose of this page is to make the proof and its verification available."
+  },
+  "repository": {
+    "name": "oeis-a057923",
+    "url": "https://github.com/cozuya/oeis-a057923",
+    "programmingLanguage": "Lean 4"
+  },
+  "statementHtml": "<p>Let ∨ denote bitwise OR on arbitrary-precision nonnegative integers. Define <i>a</i>(0) = 0, <i>a</i>(1) = 2, and, for every integer <i>n</i> ≥ 0,</p>\n<p class=\"formula\"><i>a</i>(<i>n</i>+2) = min { <i>m</i> ∈ ℤ<sub>≥0</sub> : (<i>a</i>(<i>n</i>+1) ∨ <i>m</i>) &gt; (<i>a</i>(<i>n</i>) ∨ <i>a</i>(<i>n</i>+1)) }.</p>\n<p>The minimum and the strict comparison use the usual numerical order. Values may repeat; there is no unused-value condition and no fixed word size. The sequence begins</p>\n<p class=\"formula\">0, 2, 1, 4, 2, 5, 8, 6, 9, 16, 10, 17, 12, 18, 13, 32, …</p>\n<p><b>Theorem.</b> For every <i>n</i> ≥ 0, <i>a</i>(<i>n</i>+2) &gt; <i>a</i>(<i>n</i>).</p>",
+  "scopeHtml": "<ul>\n<li><b>Proved:</b> <i>a</i>(<i>n</i>+2) &gt; <i>a</i>(<i>n</i>) for all <i>n</i> ≥ 0, for the greedy definition above with seeds 0, 2. The Lean development also proves that the greedy choice exists and is minimal.</li>\n<li><b>Two-step, not consecutive:</b> consecutive terms are not monotone (for example 2, 1). The conjecture and the theorem concern two-step increase.</li>\n<li><b>Not done:</b> the OEIS entry has not been edited or marked resolved.</li>\n</ul>",
+  "proofOutlineHtml": "<p>The greedy choice always exists: for a preceding pair <i>x</i>, <i>y</i>, the value <i>m</i> = (<i>x</i> ∨ <i>y</i>) + 1 satisfies (<i>y</i> ∨ <i>m</i>) ≥ <i>m</i> &gt; (<i>x</i> ∨ <i>y</i>), so the admissible set has a least member.</p>\n<p>The least admissible <i>m</i> shares no set bit with <i>y</i>: clearing such a bit would give a smaller number with the same OR with <i>y</i>, contradicting minimality. So every adjacent pair has disjoint set bits (the seeds 0, 2 do too). For integers with disjoint set bits, OR equals addition, so the defining inequality becomes <i>a</i>(<i>n</i>+1) + <i>a</i>(<i>n</i>+2) &gt; <i>a</i>(<i>n</i>) + <i>a</i>(<i>n</i>+1). Cancelling <i>a</i>(<i>n</i>+1) gives <i>a</i>(<i>n</i>+2) &gt; <i>a</i>(<i>n</i>).</p>",
+  "verificationHtml": "<p>The proof is formalized in Lean 4.35.0 (commit <code>eb6cafb</code>) using only Lean's standard library. The main theorem is <code>A057923.two_step_strict : a n &lt; a (n + 2)</code>.</p>\n<p><code>python3 scripts/verify.py</code> checks the exact compiler version and Git revision, compiles the proof from source, and then compiles <code>Verification.lean</code>, which separately checks four statements:</p>\n<ul>\n<li><code>Verification.seed_zero</code> and <code>Verification.seed_one</code>: <i>a</i>(0) = 0 and <i>a</i>(1) = 2</li>\n<li><code>Verification.greedy_minimum</code>: each term satisfies the strict OR inequality and is at most every admissible <i>m</i></li>\n<li><code>Verification.claimed_result</code>: <i>a</i>(<i>n</i>+2) &gt; <i>a</i>(<i>n</i>)</li>\n</ul>\n<p>The script rejects compiler warnings and errors, missing axiom reports, and any dependency outside <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>; a proof using <code>sorryAx</code> is rejected.</p>\n<p><b>Trust model:</b> Lean's kernel and these three standard axioms. GitHub Actions installs a checksum-pinned Lean release, repeats the check on pushes and pull requests, and retains a report recording the commit, source hashes, compiler identity, and axiom dependencies.</p>",
+  "priorArtHtml": "<p>A bounded prior-art audit on October 15, 2026, before the solving attempt, concluded that the conjecture was still listed as conjectural and located no prior resolution. It inspected the OEIS entry, its internal record and full revision history, Robert Israel's Maple program, the related sequences <a href=\"https://oeis.org/A051145\">A051145</a>, <a href=\"https://oeis.org/A057924\">A057924</a>, and <a href=\"https://oeis.org/A057925\">A057925</a>, the jOEIS and LODA implementations, a C++ program by Rémy Sigrist, and public formal-mathematics collections (Google DeepMind's formal-conjectures, OpenAI's mathematics release, and the-omega-institute's repository).</p>\n<p><b>Closely related earlier ingredients:</b> Israel's 2017 Maple search starts at the lower bound (<i>x</i> ∨ <i>y</i>) − <i>y</i>, and Charlie Neder's October 12, 2018 update formula for A051145 clears the bits of the preceding term. If Neder's formula is assumed to generate the greedy sequence with seeds 0, 2 (it is stated for seeds 0, 1, and no inspected source proves the 0, 2 case), the two combine into a short deduction of the conjecture. The inspected sources state neither a proof nor an explicit monotonicity argument. The proof here derives disjointness directly from greedy minimality and does not assume Neder's formula.</p>\n<p><b>Limits:</b> direct SeqFan archive access failed, and search-engine and GitHub index limits prevent an exhaustive negative conclusion.</p>",
+  "provenanceHtml": "<p>Chris Ozols, with AI-assisted proof development and formalization; individual model names are not recorded. The status audit, solving prompt, returned proof, and first successful Lean check were recorded on October 15, 2026 (America/Chicago). The original prompt, returned proof, and formalization are retained unchanged in the repository with their SHA-256 hashes.</p>",
+  "links": [
+    {"group": "Original problem", "items": [
+      {"label": "OEIS A057923", "url": "https://oeis.org/A057923"},
+      {"label": "A057923 revision history", "url": "https://oeis.org/history?seq=A057923"}
+    ]},
+    {"group": "Proof and formalization", "items": [
+      {"label": "GitHub repository", "url": "https://github.com/cozuya/oeis-a057923"},
+      {"label": "Readable statement and proof (README.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/README.md"},
+      {"label": "Lean proof (A057923.lean)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/A057923.lean"},
+      {"label": "Exact-statement check (Verification.lean)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/Verification.lean"},
+      {"label": "Verification script (scripts/verify.py)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/scripts/verify.py"}
+    ]},
+    {"group": "Verification evidence", "items": [
+      {"label": "GitHub Actions verification runs and reports", "url": "https://github.com/cozuya/oeis-a057923/actions/workflows/verify.yml"}
+    ]},
+    {"group": "Prior art and provenance", "items": [
+      {"label": "Prior-art audit (PRIOR_ART.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/PRIOR_ART.md"},
+      {"label": "Discovery summary (DISCOVERY.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/DISCOVERY.md"},
+      {"label": "Provenance (PROVENANCE.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/PROVENANCE.md"},
+      {"label": "Original prompt (PROMPT.md)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/PROMPT.md"},
+      {"label": "Returned proof, unchanged (RESULTS.txt)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/RESULTS.txt"},
+      {"label": "Citation metadata (CITATION.cff)", "url": "https://github.com/cozuya/oeis-a057923/blob/main/CITATION.cff"}
+    ]}
+  ]
+}

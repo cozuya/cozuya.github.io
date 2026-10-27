@@ -1,0 +1,36 @@
+{
+  "name": "Chris Ozols",
+  "url": "https://cozuya.github.io",
+  "jobTitle": "Software engineer",
+  "description": "Personal GitHub site of Chris Ozols, software engineer: selected projects and technical work, including mathematical work with reproducible verification.",
+  "dateModified": "2026-10-27",
+  "sameAs": ["https://github.com/cozuya", "https://twolongos.com/"],
+  "homeIntroHtml": "<p>This is my personal GitHub site, where I keep selected projects and technical work. For my writing and other information, visit <a href=\"https://twolongos.com/\">twolongos.com</a>. My code is on <a href=\"https://github.com/cozuya\">GitHub</a>.</p>",
+  "footerLinks": [
+    {"label": "GitHub", "url": "https://github.com/cozuya"},
+    {"label": "twolongos.com", "url": "https://twolongos.com/"}
+  ],
+  "indexNowKey": "68bb50ad9a03986f2ede81e717ff9052",
+  "collections": {
+    "proofs": {
+      "kind": "proof",
+      "navLabel": "Proofs",
+      "heading": "Mathematical proofs",
+      "title": "Mathematical Proofs — Chris Ozols",
+      "description": "Proofs of published mathematical conjectures with reproducible Lean verification, exact statements, trust models, and prior-art notes. No novelty or priority is claimed.",
+      "blurb": "Mathematical proofs with reproducible verification and supporting documentation.",
+      "introHtml": "<p>These are mathematical proofs I have made available with reproducible verification. For each problem, I searched for an existing proof and did not find one in the sources I examined. That is not a claim of novelty or historical priority. Each entry states exactly what is proved, how it is checked, and what the prior-art search covered.</p>",
+      "empty": "No proofs are listed yet."
+    },
+    "refutations": {
+      "kind": "refutation",
+      "navLabel": "Refutations",
+      "heading": "Mathematical refutations",
+      "title": "Mathematical Refutations — Chris Ozols",
+      "description": "Counterexamples to published mathematical claims, with exact witnesses, reproducible verification, and prior-art notes, including disclosure of earlier refutations.",
+      "blurb": "Counterexamples to mathematical claims, with supporting evidence and prior-art notes.",
+      "introHtml": "<p>These are counterexamples and refutations from my mathematical investigations. Each entry gives the statement being challenged, the counterexample, and the available verification. Prior-art searches and known earlier results, including earlier refutations, are documented with each entry.</p>",
+      "empty": "No entries are published yet. Entries are added once the counterexample can be checked independently and its prior-art notes, including any earlier refutations, are complete."
+    }
+  }
+}

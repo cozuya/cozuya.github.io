@@ -1,0 +1,87 @@
+{
+  "slug": "gyires-permanent-4x4",
+  "publicationStatus": "published",
+  "order": 3,
+  "title": "Gyires' Permanent Inequality — n=4 Proof Available",
+  "shortTitle": "Gyires' permanent inequality, n = 4",
+  "description": "Lean-checked proof of the n = 4 case of Gyires' permanent inequality (Cheon–Wanless Conjecture 20), with equality only at J₄. Uses native_decide; general n is not addressed.",
+  "summary": "For every real doubly stochastic 4×4 matrix A, 128 per(A)² ≥ 3[per(AAᵀ) + per(AᵀA) + 2 per(A²)], with equality exactly when every entry is 1/4. Only the n = 4 case is proved; the conjecture for general n is not addressed.",
+  "dateModified": "2026-10-27",
+  "keywords": ["Gyires permanent inequality", "Gyires conjecture n=4", "Cheon Wanless Conjecture 20", "Minc permanent conjectures", "doubly stochastic matrix permanent", "4x4 permanent inequality", "Béla Gyires", "native_decide", "Lean 4", "Mathlib"],
+  "problem": {
+    "name": "Gyires' permanent inequality (Cheon–Wanless Conjecture 20), case n = 4",
+    "identifiers": ["Cheon–Wanless Conjecture 20 (Gyires)", "Linear Algebra Appl. 403 (2005) 314–342", "DOI 10.1016/j.laa.2005.02.030", "Gyires 1978, zbMATH 0398.15007"],
+    "alternateNames": ["Gyires' conjecture on permanents", "Gyires permanent conjecture", "Conjecture 20 in Minc's list of permanent problems"],
+    "sourceHtml": "B. Gyires, <cite>On permanent inequalities</cite>, Colloq. Math. Soc. János Bolyai <b>18</b> (1978), 471–484 (<a href=\"https://zbmath.org/3618267\">zbMATH 0398.15007</a>). Stated as Conjecture 20 in G.-S. Cheon and I. M. Wanless, <cite>An update on Minc's survey of open problems involving permanents</cite>, Linear Algebra Appl. <b>403</b> (2005), 314–342 (<a href=\"https://doi.org/10.1016/j.laa.2005.02.030\">DOI</a> · <a href=\"https://users.monash.edu.au/~iwanless/papers/permsurveyLAA.pdf\">author's PDF</a>).",
+    "citations": [
+      {
+        "@type": "ScholarlyArticle",
+        "name": "An update on Minc's survey of open problems involving permanents",
+        "author": [{"@type": "Person", "name": "Gi-Sang Cheon"}, {"@type": "Person", "name": "Ian M. Wanless"}],
+        "isPartOf": {"@type": "Periodical", "name": "Linear Algebra and its Applications"},
+        "datePublished": "2005",
+        "pagination": "314–342",
+        "identifier": "doi:10.1016/j.laa.2005.02.030",
+        "url": "https://doi.org/10.1016/j.laa.2005.02.030"
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "name": "On permanent inequalities",
+        "author": [{"@type": "Person", "name": "Béla Gyires"}],
+        "isPartOf": {"@type": "Book", "name": "Combinatorics (Proc. Fifth Hungarian Colloq., Keszthely, 1976), Colloq. Math. Soc. János Bolyai 18"},
+        "datePublished": "1978",
+        "pagination": "471–484",
+        "url": "https://zbmath.org/3618267"
+      }
+    ]
+  },
+  "verification": {
+    "trustModel": "lean-native-decide",
+    "summary": "Lean 4.28.0 with Mathlib v4.28.0. The 4×4 theorems depend on Lean.ofReduceBool and Lean.trustCompiler in addition to the standard axioms; the finite certificate is also checked by an independent C++ program."
+  },
+  "priority": {
+    "priorResolutionKnown": false,
+    "statement": "I did not find an earlier unrestricted proof of the 4×4 case in the sources I examined. This is not a claim of novelty or historical priority, or that any problem listing has been officially closed. The purpose of this page is to make the proof and its verification available."
+  },
+  "repository": {
+    "name": "gyires-permanent-4x4",
+    "url": "https://github.com/cozuya/gyires-permanent-4x4",
+    "programmingLanguage": "Lean 4"
+  },
+  "scopeWarningHtml": "<p><strong>Scope: only n = 4 is proved.</strong> The conjecture for general n is not addressed here; n ≤ 3 was previously known. <strong>Trust model: not a kernel-only proof.</strong> The Lean proof checks a finite certificate with <code>native_decide</code>, so the main theorems trust Lean's compiler and runtime as well as its kernel. The same finite fact is independently checked by a separate C++ program.</p>",
+  "statementHtml": "<p>A real matrix is <em>doubly stochastic</em> if its entries are nonnegative and every row and column sums to 1. Write Ω<sub><i>n</i></sub> for the set of such <i>n</i>×<i>n</i> matrices and <i>J</i><sub><i>n</i></sub> for the matrix with every entry 1/<i>n</i>. Gyires' conjecture, as stated by Cheon and Wanless (2005, Conjecture 20), is</p>\n<p class=\"formula\">4 per(<i>A</i>)² / [per(<i>AA</i>*) + per(<i>A</i>*<i>A</i>) + 2 per(<i>A</i>²)] ≥ <i>n</i>! / <i>n</i><sup><i>n</i></sup> &nbsp; for <i>A</i> ∈ Ω<sub><i>n</i></sub>,</p>\n<p>with equality only at <i>A</i> = <i>J</i><sub><i>n</i></sub>. For real <i>A</i>, <i>A</i>* = <i>A</i><sup>T</sup>. For <i>n</i> = 4 the right-hand side is 24/256 = 3/32, and since the denominator is positive the statement becomes:</p>\n<p><b>Theorem (n = 4).</b> For every real doubly stochastic 4×4 matrix <i>A</i>,</p>\n<p class=\"formula\">128 per(<i>A</i>)² ≥ 3 [per(<i>AA</i><sup>T</sup>) + per(<i>A</i><sup>T</sup><i>A</i>) + 2 per(<i>A</i>²)],</p>\n<p>with equality if and only if every entry of <i>A</i> is 1/4.</p>",
+  "scopeHtml": "<p>Formalized for real 4×4 doubly stochastic matrices, using Mathlib's own <code>Matrix.permanent</code>, matrix product, transpose, and <code>doublyStochastic ℝ (Fin 4)</code>:</p>\n<ul>\n<li>the polynomial inequality above (<code>Gyires.gyires_4x4</code>) and its equality case (<code>Gyires.gyires_4x4_eq_iff</code>), with strict inequality away from <i>J</i><sub>4</sub>;</li>\n<li>the Cheon–Wanless ratio form for <i>n</i> = 4 and its equality case (<code>Gyires.gyires_4x4_ratio</code>, <code>Gyires.gyires_4x4_ratio_eq_iff</code>);</li>\n<li>the stronger inequality 3 per(<i>AA</i><sup>T</sup>) ≤ 32 per(<i>A</i>)² on Ω<sub>4</sub> (<code>Gyires.permanent_gram_le</code>);</li>\n<li>2 per(<i>MN</i><sup>T</sup>) ≤ per(<i>MM</i><sup>T</sup>) + per(<i>NN</i><sup>T</sup>) for real square <i>M</i>, <i>N</i> of every size (<code>Gyires.permanent_gram_add_ge</code>), using standard axioms only.</li>\n</ul>\n<p><b>Not proved:</b> Gyires' conjecture for <i>n</i> ≥ 5. The finite-certificate method used here does not extend to general <i>n</i> as it stands.</p>",
+  "proofOutlineHtml": "<ol>\n<li><b>A stronger inequality suffices.</b> With <i>H</i>(<i>M</i>) = 32 per(<i>M</i>)² − 3 per(<i>MM</i><sup>T</sup>), a sum-of-squares identity for permanents gives per(<i>AA</i><sup>T</sup>) + per(<i>A</i><sup>T</sup><i>A</i>) ≥ 2 per(<i>A</i>²), and 128 per(<i>A</i>)² − 3[per(<i>AA</i><sup>T</sup>) + per(<i>A</i><sup>T</sup><i>A</i>) + 2 per(<i>A</i>²)] = 2<i>H</i>(<i>A</i>) + 2<i>H</i>(<i>A</i><sup>T</sup>) + 3[per(<i>AA</i><sup>T</sup>) + per(<i>A</i><sup>T</sup><i>A</i>) − 2 per(<i>A</i>²)]. So it is enough to show <i>H</i> ≥ 0 on Ω<sub>4</sub>, with equality only at <i>J</i><sub>4</sub>.</li>\n<li><b>Reduction to cones.</b> Subtracting the smallest entry and repeatedly pulling out the center of the smallest face of the Birkhoff polytope containing the remainder writes <i>A</i> as a nonnegative combination of <i>J</i> and the centers of a chain of faces ending at a permutation matrix.</li>\n<li><b>A finite certificate.</b> On each such cone, <i>H</i> is a degree-8 polynomial in the coefficients. Using the 576 row and column permutations, 65,376 chains suffice, and for every one of them every coefficient is nonnegative, with strictly positive pure powers, which also gives the equality case.</li>\n<li><b>Checked in Lean.</b> A checker that regenerates the chains, symmetry reduction, and polynomials is proved sound in Lean; a successful run implies the real-matrix statement. Running that checker is the one step not checked by the kernel.</li>\n</ol>",
+  "verificationHtml": "<p>The formalization uses Lean 4.28.0 (commit <code>7e01a1b</code>) with Mathlib v4.28.0 (commit <code>8f9d9cf</code>). <code>./verify.sh</code> deletes the project's build outputs, rebuilds all 41 project modules including every certificate piece, and checks <code>Verification.lean</code> with <code>lake env lean --trust=0</code>. That file restates the results with the doubly stochastic conditions written out entrywise. The audit checks the printed theorem types and the exact axiom set of 15 declarations.</p>\n<p><b>Trust model.</b> <code>native_decide</code> proves a closed Boolean fact by compiling and running code; the kernel accepts the result through the axiom <code>Lean.ofReduceBool</code>, and <code>Lean.trustCompiler</code> records that the compiler, interpreter, and runtime are trusted. It is used for exactly 36 Boolean checks (certificate pieces, multiplication tables, top-level face splits, and two small index facts). Every 4×4 inequality and equality theorem therefore depends on <code>Lean.ofReduceBool</code> and <code>Lean.trustCompiler</code> in addition to <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>. Of the 15 audited declarations, only <code>Gyires.permanent_gram_add_ge</code>, its restatement, and the denominator-positivity lemma use the standard axioms alone. Mathlib does not accept <code>native_decide</code>, and external Lean proof checkers cannot replay such proofs.</p>\n<p><b>Independent cross-check.</b> The finite part is re-implemented outside Lean: the certificate tree in Python and the coefficient test in C++ with 128-bit integers. It confirms all 65,376 cones, the tight coefficients, and the strict pure powers; as a negative control it rejects every cone when 32 is replaced by 31. An earlier, separate computational proof checked the same cone classes with another implementation.</p>",
+  "priorArtHtml": "<ul>\n<li><b>Origin:</b> Gyires (1978). The original article was not accessed. Cheon and Wanless (2005) state it as Conjecture 20, with equality precisely at <i>J</i><sub><i>n</i></sub>.</li>\n<li><b>Known cases:</b> D. K. Chang, <cite>On two permanental conjectures</cite>, Linear Multilinear Algebra <b>26</b> (1990), 207–213 (<a href=\"https://doi.org/10.1080/03081089008817977\">DOI</a>), proves <i>n</i> = 3 per the publisher's abstract (full text not accessed). Cheon and Wanless also report Chang's sufficient condition near <i>J</i><sub><i>n</i></sub>.</li>\n<li><b>Boundary of Ω<sub>4</sub>:</b> Yair Lavi's <a href=\"https://yair-lavi.com/mincs-list/conjecture-20/index.html\">Conjecture 20 page</a> lists the conjecture as open and announces strict inequality for every 4×4 doubly stochastic matrix with a zero entry; no proof was linked when checked on October 19, 2026. The boundary does not determine the interior.</li>\n<li><b>Nearby work not covering this statement:</b> formally verified results for other dimension-four permanent conjectures (<a href=\"https://arxiv.org/abs/2610.20681\">arXiv:2610.20681</a>; Dittert's conjecture for <i>n</i> = 4, <a href=\"https://arxiv.org/abs/2607.29191\">arXiv:2607.29191</a>). Searches of public formal-mathematics collections found related permanent statements but no formalization of this one.</li>\n</ul>\n<p>An AI-assisted literature review on October 16, 2026, with a bounded update on October 19, 2026, located no earlier unrestricted proof of the 4×4 case in the sources examined. Gyires' 1978 article, Chang's full text, and Minc's 1978 book were not read.</p>",
+  "provenanceHtml": "<p>Chris Ozols directed the work and its verification. AI assistants contributed the original computer-assisted proof, its audits, and the literature review. The Lean formalization of the inequality was produced by Harmonic's Aristotle. Anthropic's Claude independently rebuilt it and added the formalized equality case and ratio form, the cross-check, and the package. Nobody wrote the Lean proofs by hand. The original computer-assisted proof was written on October 15, 2026 (UTC, per file modification times), and the package was assembled on October 19, 2026.</p>",
+  "links": [
+    {"group": "Original problem", "items": [
+      {"label": "Cheon and Wanless (2005), Conjecture 20 — DOI", "url": "https://doi.org/10.1016/j.laa.2005.02.030"},
+      {"label": "Cheon and Wanless (2005) — author's PDF", "url": "https://users.monash.edu.au/~iwanless/papers/permsurveyLAA.pdf"},
+      {"label": "Gyires (1978) — zbMATH 0398.15007", "url": "https://zbmath.org/3618267"}
+    ]},
+    {"group": "Proof and formalization", "items": [
+      {"label": "GitHub repository", "url": "https://github.com/cozuya/gyires-permanent-4x4"},
+      {"label": "Readable proof (PROOF.md)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/PROOF.md"},
+      {"label": "Main Lean theorem (RequestProject/Gyires.lean)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/RequestProject/Gyires.lean"},
+      {"label": "Equality case (GyiresEquality/Equality.lean)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/GyiresEquality/Equality.lean"},
+      {"label": "Ratio form (GyiresEquality/Ratio.lean)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/GyiresEquality/Ratio.lean"},
+      {"label": "Exact-statement check (Verification.lean)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/Verification.lean"}
+    ]},
+    {"group": "Verification evidence", "items": [
+      {"label": "Verification report and trust model", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/VERIFICATION_REPORT.md"},
+      {"label": "Recorded verification (verification.json)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/evidence/verification.json"},
+      {"label": "Theorem types and axioms (kernel-check.log)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/evidence/kernel-check.log"},
+      {"label": "Independent C++ cross-check", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/crosscheck/README.md"},
+      {"label": "Cross-check output (crosscheck.log)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/evidence/crosscheck.log"},
+      {"label": "Reproduction guide (REPRODUCE.md)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/REPRODUCE.md"},
+      {"label": "GitHub Actions verification runs", "url": "https://github.com/cozuya/gyires-permanent-4x4/actions/workflows/verify.yml"}
+    ]},
+    {"group": "Prior art and provenance", "items": [
+      {"label": "Prior-art review (PRIOR_ART.md)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/PRIOR_ART.md"},
+      {"label": "Provenance (PROVENANCE.md)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/PROVENANCE.md"},
+      {"label": "Citation metadata (CITATION.cff)", "url": "https://github.com/cozuya/gyires-permanent-4x4/blob/main/CITATION.cff"}
+    ]}
+  ]
+}

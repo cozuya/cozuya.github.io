@@ -1,0 +1,77 @@
+{
+  "slug": "taxicab-erdos-mordell",
+  "publicationStatus": "published",
+  "order": 1,
+  "title": "Taxicab Erdős–Mordell Conjecture 1 — Proof Available",
+  "shortTitle": "Taxicab Erdős–Mordell Conjecture 1",
+  "description": "Lean-verified proof of Petrović–Malešević–Banjac Conjecture 1: the taxicab Erdős–Mordell inequality for every triangle orientation, with sharp constant 3/2.",
+  "summary": "The taxicab Erdős–Mordell inequality holds for every nondegenerate triangle, in every orientation, and every strictly interior point, and the coefficient 3/2 is sharp.",
+  "dateModified": "2026-10-27",
+  "keywords": ["taxicab Erdős–Mordell inequality", "taxicab Erdos Mordell Conjecture 1", "Petrović Malešević Banjac conjecture", "Petrovic Malesevic Banjac Conjecture 1", "Erdős–Mordell inequality taxicab geometry", "arbitrary triangle orientations", "sharp constant 3/2", "Lean 4", "Mathlib", "formal proof"],
+  "problem": {
+    "name": "Conjecture 1 of Petrović, Malešević, and Banjac (taxicab Erdős–Mordell inequality)",
+    "identifiers": ["Petrović–Malešević–Banjac Conjecture 1", "J. Math. Inequal. 14 (2020) 1299–1319", "DOI 10.7153/jmi-2020-14-84", "arXiv:1901.08758"],
+    "alternateNames": ["taxicab Erdős–Mordell inequality", "Erdős–Mordell inequality for triangles in taxicab geometry", "Petrovic–Malesevic–Banjac conjecture", "taxicab Erdos–Mordell Conjecture 1"],
+    "sourceHtml": "Maja Petrović, Branko Malešević, and Bojan Banjac, <cite>On the Erdős–Mordell inequality for triangles in taxicab geometry</cite>, Journal of Mathematical Inequalities <b>14</b> (2020), 1299–1319, Conjecture 1 (printed page 1318, PDF page 20). <a href=\"https://doi.org/10.7153/jmi-2020-14-84\">DOI</a> · <a href=\"https://files.ele-math.com/articles/jmi-14-84.pdf#page=20\">PDF, page 20</a> · <a href=\"https://arxiv.org/abs/1901.08758\">arXiv:1901.08758</a>",
+    "citations": [
+      {
+        "@type": "ScholarlyArticle",
+        "name": "On the Erdős–Mordell inequality for triangles in taxicab geometry",
+        "author": [{"@type": "Person", "name": "Maja Petrović"}, {"@type": "Person", "name": "Branko Malešević"}, {"@type": "Person", "name": "Bojan Banjac"}],
+        "isPartOf": {"@type": "Periodical", "name": "Journal of Mathematical Inequalities"},
+        "datePublished": "2020",
+        "pagination": "1299–1319",
+        "identifier": "doi:10.7153/jmi-2020-14-84",
+        "url": "https://doi.org/10.7153/jmi-2020-14-84",
+        "sameAs": ["https://arxiv.org/abs/1901.08758"]
+      }
+    ]
+  },
+  "verification": {
+    "trustModel": "lean-kernel",
+    "summary": "Lean 4.35.0 with Mathlib v4.35.0; the five audited declarations depend only on propext, Classical.choice, and Quot.sound."
+  },
+  "priority": {
+    "priorResolutionKnown": false,
+    "statement": "I did not find an earlier proof of the full arbitrary-orientation conjecture in the sources I examined. This is not a claim of novelty or historical priority, or that any problem listing has been officially closed. The purpose of this page is to make the proof and its verification available."
+  },
+  "repository": {
+    "name": "taxicab-erdos-mordell",
+    "url": "https://github.com/cozuya/taxicab-erdos-mordell",
+    "programmingLanguage": "Lean 4"
+  },
+  "statementHtml": "<p>Use fixed coordinates on ℝ². For points <i>U</i>, <i>V</i>, the taxicab distance is</p>\n<p class=\"formula\"><i>d</i>(<i>U</i>, <i>V</i>) = |<i>U</i><sub>x</sub> − <i>V</i><sub>x</sub>| + |<i>U</i><sub>y</sub> − <i>V</i><sub>y</sub>|.</p>\n<p>For distinct <i>U</i>, <i>V</i>, the taxicab distance from <i>P</i> to the infinite line through <i>U</i> and <i>V</i> is</p>\n<p class=\"formula\"><i>h</i>(<i>P</i>; <i>U</i>, <i>V</i>) = |(<i>V</i><sub>x</sub> − <i>U</i><sub>x</sub>)(<i>P</i><sub>y</sub> − <i>U</i><sub>y</sub>) − (<i>V</i><sub>y</sub> − <i>U</i><sub>y</sub>)(<i>P</i><sub>x</sub> − <i>U</i><sub>x</sub>)| / max(|<i>V</i><sub>x</sub> − <i>U</i><sub>x</sub>|, |<i>V</i><sub>y</sub> − <i>U</i><sub>y</sub>|).</p>\n<p><b>Theorem.</b> Let <i>A</i>, <i>B</i>, <i>C</i> satisfy det(<i>B</i> − <i>A</i>, <i>C</i> − <i>A</i>) ≠ 0. For any real α, β, γ &gt; 0 with α + β + γ = 1, put <i>P</i> = α<i>A</i> + β<i>B</i> + γ<i>C</i>. Then</p>\n<p class=\"formula\">2 (<i>d</i>(<i>P</i>, <i>A</i>) + <i>d</i>(<i>P</i>, <i>B</i>) + <i>d</i>(<i>P</i>, <i>C</i>)) ≥ 3 (<i>h</i>(<i>P</i>; <i>B</i>, <i>C</i>) + <i>h</i>(<i>P</i>; <i>C</i>, <i>A</i>) + <i>h</i>(<i>P</i>; <i>A</i>, <i>B</i>)).</p>\n<p>That is, the sum of taxicab distances from an interior point to the vertices is at least 3/2 times the sum of its taxicab distances to the three side lines. There is no orientation restriction, and all three line-distance denominators are proved positive.</p>\n<p><b>Sharpness.</b> For every real <i>k</i> &gt; 3/2 there is a nondegenerate triangle and a strictly interior point with Σ<i>d</i> &lt; <i>k</i> Σ<i>h</i>. The example <i>A</i> = (−1, 0), <i>B</i> = (1, 0), <i>C</i> = (0, 1), <i>P</i> = (0, ε) has Σ<i>d</i> = 3 + ε and Σ<i>h</i> = 2 − ε for 0 &lt; ε &lt; 1.</p>",
+  "scopeHtml": "<ul>\n<li><b>Proved:</b> the inequality above for every nondegenerate triangle, in every orientation, and every strictly interior point; and that the coefficient 3/2 cannot be increased.</li>\n<li><b>Distances:</b> the distances are to the infinite supporting lines of the sides, not to the side segments.</li>\n<li><b>Why orientation matters:</b> rotations are not symmetries of the taxicab metric, so the general orientation case does not reduce to the restricted positions treated in the original paper.</li>\n<li><b>Not new here:</b> the constant 3/2 and the sharpness obstruction already appear in the original paper. Coordinate-median minimization and piecewise linear estimates are established methods.</li>\n</ul>",
+  "proofOutlineHtml": "<p>Each side-line distance is at most the distance to either endpoint of that side, which proves the inequality on the boundary. The coordinatewise median of the three vertices lies in the closed triangle, including coordinate ties. Within the triangle, the sum of vertex distances equals its value at that median plus the distance to the median, while the sum of line distances is affine.</p>\n<p>Interpolating between the median and the boundary therefore reduces the problem to the median. Coordinate reflections and an interchange of the axes put that case into a form handled by a piecewise affine estimate and an exact polynomial identity. The repository's readable proof gives the complete argument and the sharpness example.</p>",
+  "verificationHtml": "<p>The proof is formalized in Lean 4.35.0 (commit <code>eb6cafb</code>) with Mathlib v4.35.0 (commit <code>56a0058</code>). The compiler archive is pinned by SHA-256 and every dependency revision is locked.</p>\n<p><code>./verify.sh</code> cleans and rebuilds all nine project modules, then checks <code>Verification.lean</code> with <code>lake env lean --trust=0</code>. That file independently restates the target in raw coordinates, with the determinant hypothesis and all three determinant-over-maximum line distances written out, and separately proves each denominator positive. The audit requires the printed axiom report of each of five declarations to be exactly <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>:</p>\n<ul>\n<li><code>Taxicab.taxicab_erdos_mordell_strict</code>: the main strict-interior theorem</li>\n<li><code>TaxicabVerification.exact_statement</code>: the raw-coordinate target</li>\n<li><code>TaxicabVerification.exact_denominators_positive</code>: positive side denominators</li>\n<li><code>Taxicab.sharpness</code>: every coefficient greater than 3/2 fails</li>\n<li><code>Taxicab.sharpness_distances</code>: the exact sums in the example</li>\n</ul>\n<p><b>Trust model:</b> Lean's kernel and these three standard axioms. The sources contain no <code>sorry</code>, <code>admit</code>, custom axiom, or <code>native_decide</code>. A SHA-256 manifest covers the proof, documentation, pins, and scripts; the committed evidence records those hashes, and GitHub Actions repeats the full check on pushes and pull requests.</p>",
+  "priorArtHtml": "<p>The original paper's Theorem 2 establishes the coefficient 3/2 for restricted coordinate positions (<i>A</i> = (0, <i>r</i>), <i>B</i> = (<i>p</i>, 0), <i>C</i> = (<i>q</i>, 0), with the stated sign and ordering cases and coordinate reflections). Conjecture 1 asks for every orientation.</p>\n<p>A bounded, AI-assisted literature search located no earlier resolution of the exact arbitrary-orientation conjecture in the sources searched. This is negative evidence within the scope of that search, not established priority or independent human confirmation.</p>\n<p><b>Access limitation:</b> the full text of M. Ghandehari and H. Martini, <cite>On the Erdős–Mordell inequality for normed planes and spaces</cite>, Studia Sci. Math. Hungar. <b>55</b> (2018), 174–189 (<a href=\"https://doi.org/10.1556/012.2018.55.2.1392\">DOI</a>), was not accessed, so its full scope has not been checked.</p>",
+  "provenanceHtml": "<p>Chris Ozols, with AI-assisted proof development and formalization. Chris directed the work and its verification; OpenAI assistants contributed to the proof, the Lean formalization, and the package. Private proof development and initial Lean verification took place on October 16, 2026 (UTC). Commit dates and hashes identify content; they do not establish priority.</p>",
+  "links": [
+    {"group": "Original problem", "items": [
+      {"label": "Petrović–Malešević–Banjac (2020), Conjecture 1, PDF page 20", "url": "https://files.ele-math.com/articles/jmi-14-84.pdf#page=20"},
+      {"label": "DOI 10.7153/jmi-2020-14-84", "url": "https://doi.org/10.7153/jmi-2020-14-84"},
+      {"label": "arXiv:1901.08758", "url": "https://arxiv.org/abs/1901.08758"}
+    ]},
+    {"group": "Proof and formalization", "items": [
+      {"label": "GitHub repository", "url": "https://github.com/cozuya/taxicab-erdos-mordell"},
+      {"label": "Readable proof (PROOF.md)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/PROOF.md"},
+      {"label": "Main Lean theorem (Taxicab/Main.lean)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/Taxicab/Main.lean"},
+      {"label": "Sharpness (Taxicab/Sharpness.lean)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/Taxicab/Sharpness.lean"},
+      {"label": "Exact-statement check (Verification.lean)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/Verification.lean"}
+    ]},
+    {"group": "Verification evidence", "items": [
+      {"label": "Verification report", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/VERIFICATION_REPORT.md"},
+      {"label": "Recorded verification (verification.json)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/evidence/verification.json"},
+      {"label": "Full transcript (verification.log)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/evidence/verification.log"},
+      {"label": "Theorem types and axioms (kernel-check.log)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/evidence/kernel-check.log"},
+      {"label": "Source manifest (SOURCE_SHA256SUMS)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/SOURCE_SHA256SUMS"},
+      {"label": "GitHub Actions verification runs", "url": "https://github.com/cozuya/taxicab-erdos-mordell/actions/workflows/verify.yml"}
+    ]},
+    {"group": "Prior art and provenance", "items": [
+      {"label": "Prior-art review (PRIOR_ART.md)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/PRIOR_ART.md"},
+      {"label": "Discovery summary (DISCOVERY.md)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/DISCOVERY.md"},
+      {"label": "Provenance (PROVENANCE.md)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/PROVENANCE.md"},
+      {"label": "Citation metadata (CITATION.cff)", "url": "https://github.com/cozuya/taxicab-erdos-mordell/blob/main/CITATION.cff"}
+    ]}
+  ]
+}
