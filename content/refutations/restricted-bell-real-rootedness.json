@@ -1,0 +1,146 @@
+{
+  "slug": "restricted-bell-real-rootedness",
+  "publicationStatus": "published",
+  "order": 0,
+  "title": "Restricted Bell polynomial real-rootedness — Lean-verified counterexample",
+  "shortTitle": "Restricted Bell polynomial real-rootedness (n = 800, m = 5)",
+  "description": "Lean 4-verified counterexample to Moll, Ramírez, and Villamizar's restricted Bell polynomial real-rootedness conjecture: B(800, ≤5) has a nonreal complex zero.",
+  "summary": "The restricted Bell polynomial B₈₀₀,≤₅ has a nonreal complex zero, refuting Conjecture 6.4 of Moll–Ramírez–Villamizar (2017). The explicit counterexample is verified in Lean from the finite-set-partition definition.",
+  "dateModified": "2026-11-02",
+  "keywords": [
+    "restricted Bell polynomial",
+    "restricted Stirling numbers",
+    "real-rootedness",
+    "Moll Ramírez Villamizar Conjecture 6.4",
+    "counterexample",
+    "set partitions",
+    "Hankel matrix",
+    "Newton identities",
+    "Lean 4",
+    "Mathlib"
+  ],
+  "problem": {
+    "name": "Real-rootedness of restricted Bell polynomials, Conjecture 6.4 of Moll, Ramírez, and Villamizar",
+    "identifiers": [
+      "Moll–Ramírez–Villamizar Conjecture 6.4 (2017)",
+      "arXiv:1707.08138",
+      "Journal of Combinatorics 9 (2018), Conjecture 6.2"
+    ],
+    "alternateNames": [
+      "restricted Bell polynomial real-rootedness conjecture",
+      "bounded-block Bell polynomial zeros"
+    ],
+    "sourceHtml": "Victor H. Moll, José L. Ramírez, and Diego Villamizar, <cite>Combinatorial and Arithmetical Properties of the Restricted and Associated Bell and Factorial Numbers</cite>, Conjecture 6.4, §6.1, printed page 14 (<a href=\"https://arxiv.org/pdf/1707.08138v1#page=14\">2017 arXiv PDF</a>; <a href=\"https://arxiv.org/abs/1707.08138\">arXiv record</a>). Published in <cite>Journal of Combinatorics</cite> <b>9</b> (2018), 693–720, as Conjecture 6.2.",
+    "citations": [
+      {
+        "@type": "ScholarlyArticle",
+        "name": "Combinatorial and Arithmetical Properties of the Restricted and Associated Bell and Factorial Numbers",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Victor H. Moll"
+          },
+          {
+            "@type": "Person",
+            "name": "José L. Ramírez"
+          },
+          {
+            "@type": "Person",
+            "name": "Diego Villamizar"
+          }
+        ],
+        "datePublished": "2017",
+        "identifier": "arXiv:1707.08138",
+        "url": "https://arxiv.org/abs/1707.08138"
+      }
+    ]
+  },
+  "verification": {
+    "trustModel": "lean-kernel",
+    "summary": "Lean 4.28.0 and Mathlib v4.28.0; the unconditional theorem starts from bounded finite partitions. The 13 audited declarations use only propext, Classical.choice, and Quot.sound; no native_decide."
+  },
+  "priority": {
+    "priorResolutionKnown": false,
+    "statement": "A bounded literature search on November 2, 2026 did not locate an earlier exact-scope counterexample. This is not a comprehensive priority review; no novelty or first-discovery claim is made."
+  },
+  "repository": {
+    "name": "restricted-bell-counterexample",
+    "url": "https://github.com/cozuya/restricted-bell-counterexample",
+    "programmingLanguage": "Lean 4"
+  },
+  "claimHtml": "<p>Let <i>S</i><sub>≤<i>m</i></sub>(<i>n</i>,<i>k</i>) count partitions of <i>n</i> labeled elements into <i>k</i> nonempty blocks, with each block of size at most <i>m</i>. Define</p>\n<p class=\"formula\"><i>B</i><sub><i>n</i>,≤<i>m</i></sub>(<i>x</i>) = Σ<sub><i>k</i>=0</sub><sup><i>n</i></sup> <i>S</i><sub>≤<i>m</i></sub>(<i>n</i>,<i>k</i>) <i>x</i><sup><i>k</i></sup>.</p>\n<p>Conjecture 6.4 asserts that every root is real and nonpositive whenever <i>m</i> ≥ 1 and <i>m</i> is neither 3 nor 4. The restriction is on each block’s maximum size, not on the number of blocks.</p>",
+  "counterexampleHtml": "<p>Take <b><i>n</i> = 800</b> and <b><i>m</i> = 5</b>, a permitted cap. The exact counting polynomial has degree 800 and factors as</p>\n<p class=\"formula\"><i>B</i><sub>800,≤5</sub>(<i>x</i>) = <i>x</i><sup>160</sup><i>Q</i>(<i>x</i>), &nbsp; deg <i>Q</i> = 640, &nbsp; <i>Q</i> monic.</p>\n<p>The Lean theorem proves that this polynomial has a complex root with nonzero imaginary part. This is a counterexample to the universal real-rootedness claim; no numerical approximation to a root is required.</p>",
+  "explanationHtml": "<p>The first 39 leading coefficients of <i>Q</i> are obtained from an exact restricted-Stirling recurrence, proved equivalent to the original partition count. Newton’s identities turn these coefficients into the first 39 power sums <i>s</i><sub>0</sub>,…,<i>s</i><sub>38</sub> of the negatives of its roots, counted with multiplicity.</p>\n<p>Form the 20×20 Hankel matrix <i>H</i><sub><i>i</i>,<i>j</i></sub> = <i>s</i><sub><i>i</i>+<i>j</i></sub>. If all roots were real, every real vector <i>u</i> would satisfy <i>u</i><sup>T</sup><i>H</i><i>u</i> ≥ 0, because the expression is a sum of squares. An explicit 20-entry integer vector instead gives <i>u</i><sup>T</sup><i>H</i><i>u</i> &lt; 0, verified by exact arithmetic. Hence <i>Q</i>, and therefore the restricted Bell polynomial, has a nonreal root.</p>",
+  "verificationHtml": "<p>The principal theorem is <code>RestrictedBell.restrictedBell_800_5_nonreal</code>, with type <code>∃ z : ℂ, (RestrictedBell.countingBell 800 5).IsRoot z ∧ z.im ≠ 0</code>. The corollary <code>RestrictedBell.realRootedness_conjecture_false</code> negates the universally quantified conjecture. The polynomial is defined from bounded partitions of <code>Fin 800</code>, not an arbitrary polynomial with copied coefficients.</p>\n<p>The Lean development proves the partition-counting recurrence, certifies 801 recurrence rows in nine batches, checks the Newton relations and the exact negative quadratic form, and connects them to the final theorem. The recorded clean rebuild passed on November 2, 2026, using Lean 4.28.0 and Mathlib v4.28.0. All 13 audited declarations report precisely <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>; there are no <code>sorry</code>, custom axioms, or <code>native_decide</code> dependencies in those results.</p>\n<p><b>Reproduction:</b> follow the pinned setup in the repository and run <code>./verify.sh</code>. Exact-arithmetic Python verifiers provide a separate cross-check, but are outside the Lean proof’s trust boundary. The verification report records the local run; hosted CI is tracked separately.</p>",
+  "priorArtHtml": "<p>The conjecture was posed in the 2017 preprint (Conjecture 6.4) and published in 2018 (Conjecture 6.2). A bounded search conducted on November 2, 2026 did not locate a previously published refutation for the same block-size-bounded polynomial family. Similar results about restricted Stirling matrices, other Bell polynomial families, or minimum block sizes do not by themselves settle this statement.</p>\n<p><b>Limits:</b> the counterexample is not claimed to be minimal; no classification of all caps is given. The separate log-concavity conjecture is not refuted. Formal verification establishes the mathematical contradiction, not historical novelty or priority. See the repository’s <a href=\"https://github.com/cozuya/restricted-bell-counterexample/blob/main/PRIOR_ART.md\">prior-art notes</a>.</p>",
+  "provenanceHtml": "<p>Chris Ozols, with AI-assisted discovery, independent exact-arithmetic checking, and Lean 4 formalization. The candidate arose from a ColdHarvest research run on November 2, 2026. The public repository preserves the original computational certificate, an independent audit, the completed Lean source, hashes, and reproducible verification scripts. This account makes no claim of historical priority.</p>",
+  "links": [
+    {
+      "group": "Original conjecture",
+      "items": [
+        {
+          "label": "Moll–Ramírez–Villamizar (2017), Conjecture 6.4, page 14",
+          "url": "https://arxiv.org/pdf/1707.08138v1#page=14"
+        },
+        {
+          "label": "arXiv:1707.08138 — submission history",
+          "url": "https://arxiv.org/abs/1707.08138"
+        }
+      ]
+    },
+    {
+      "group": "Counterexample and Lean formalization",
+      "items": [
+        {
+          "label": "GitHub repository",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample"
+        },
+        {
+          "label": "Readable mathematical proof",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/PROOF.md"
+        },
+        {
+          "label": "Final Lean theorems (Final.lean)",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/RestrictedBell/Final.lean"
+        },
+        {
+          "label": "Explicit counting definition and conjecture restatements (Verification.lean)",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/Verification.lean"
+        },
+        {
+          "label": "Exact integer certificate (Certificate.lean)",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/RestrictedBell/Certificate.lean"
+        }
+      ]
+    },
+    {
+      "group": "Verification and provenance",
+      "items": [
+        {
+          "label": "Reproduction instructions",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/REPRODUCE.md"
+        },
+        {
+          "label": "Verification report",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/VERIFICATION_REPORT.md"
+        },
+        {
+          "label": "Lean theorem statements and axiom report",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/evidence/kernel-check.log"
+        },
+        {
+          "label": "Independent certificate and verifier",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/tree/main/crosscheck"
+        },
+        {
+          "label": "Prior-art review",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/PRIOR_ART.md"
+        },
+        {
+          "label": "Provenance",
+          "url": "https://github.com/cozuya/restricted-bell-counterexample/blob/main/PROVENANCE.md"
+        }
+      ]
+    }
+  ]
+}
