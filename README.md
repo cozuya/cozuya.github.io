@@ -16,6 +16,7 @@ python3 -m http.server -d _site 8000
 | `content/site.json` | Name, links, collection titles and introductions |
 | `content/proofs/<slug>.json` | One file per proof, published at `/proofs/<slug>/` |
 | `content/refutations/<slug>.json` | One file per refutation, published at `/refutations/<slug>/` |
+| `content/improvements/<slug>.json` | One file per record improvement, published at `/improvements/<slug>/` |
 | `static/` | Copied unchanged (stylesheet) |
 | `build.py` | Generates every page, `sitemap.xml`, `robots.txt`, and JSON-LD |
 | `indexnow.py` | Notifies IndexNow search engines of new or changed URLs |
@@ -38,6 +39,10 @@ Common fields: `slug`, `publicationStatus` (`published` or `draft`), `order`,
   `verificationHtml`, `priorArtHtml`, and `provenanceHtml`.
 - Refutations need `claimHtml`, `counterexampleHtml`, `explanationHtml`,
   `verificationHtml`, `priorArtHtml`, and `provenanceHtml`.
+- Record improvements need `recordHtml`, `constructionHtml`, `methodHtml`,
+  `verificationHtml`, `priorArtHtml`, and `provenanceHtml`. Record the precise
+  baseline and cutoff, the independently checked new upper bound, and whether
+  novelty is still conditional on a bounded prior-art investigation.
 
 `verification.trustModel` is one of `lean-kernel`, `lean-native-decide`, or
 `computation`. The page prints a fixed label for it, so an unformalized
