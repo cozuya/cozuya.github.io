@@ -1,0 +1,165 @@
+{
+  "slug": "covering-array-86-3-40-3",
+  "publicationStatus": "published",
+  "order": 0,
+  "title": "A covering array with 86 rows, 40 columns, and three symbols",
+  "shortTitle": "Covering array CA(86; 3, 40, 3)",
+  "description": "An explicit ternary strength-three covering array with 86 rows and 40 columns improves the previously located 87-row upper bound. All 266,760 coverage requirements are formally verified in Lean 4.",
+  "summary": "An explicit 86-row ternary covering array on 40 columns improves the best previously located public upper bound of 87 rows, establishing CAN(3,40,3) ≤ 86. The construction is verified by a complete Lean 4 proof.",
+  "dateModified": "2026-11-14",
+  "keywords": [
+    "covering arrays",
+    "combinatorial designs",
+    "strength three",
+    "ternary covering array",
+    "CA(86;3,40,3)",
+    "CAN(3,40,3)",
+    "record improvement",
+    "Lean 4",
+    "formal verification",
+    "combinatorial testing"
+  ],
+  "problem": {
+    "name": "Best-known upper bound for a ternary covering array of strength three on 40 columns",
+    "identifiers": [
+      "CA(86; 3, 40, 3)",
+      "CAN(3,40,3) ≤ 86",
+      "Previous best located: CA(87; 3, 40, 3)"
+    ],
+    "alternateNames": [
+      "ternary three-way covering array on 40 factors",
+      "86-test three-way interaction covering array"
+    ],
+    "sourceHtml": "<a href=\"https://github.com/chrispbsmolen/ca-tools/blob/26270ecbd9dadd43a463cf5637606cb964577e4f/table/ca_frame.csv\">Pinned ca-tools best-known-bounds table</a> (87 rows at the November 14, 2026 research cutoff); <a href=\"https://doi.org/10.5281/zenodo.23787055\">Bai XunDi’s October 2026 constructions</a>, derived from the <a href=\"https://doi.org/10.1002/jcd.21963\">Shokri–Moura strength-three construction lineage</a>.",
+    "citations": [
+      {
+        "@type": "Dataset",
+        "name": "Covering arrays: verified improvements to the ca-tools table",
+        "author": {
+          "@type": "Person",
+          "name": "Bai XunDi"
+        },
+        "datePublished": "2026",
+        "identifier": "10.5281/zenodo.23787055",
+        "url": "https://doi.org/10.5281/zenodo.23787055"
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "name": "New Families of Strength-3 Covering Arrays Using Linear Feedback Shift Register Sequences",
+        "author": [
+          {
+            "@type": "Person",
+            "name": "Kianoosh Shokri"
+          },
+          {
+            "@type": "Person",
+            "name": "Lucia Moura"
+          }
+        ],
+        "datePublished": "2025",
+        "identifier": "10.1002/jcd.21963",
+        "url": "https://doi.org/10.1002/jcd.21963"
+      }
+    ]
+  },
+  "verification": {
+    "trustModel": "lean-kernel",
+    "summary": "Lean 4.28.0; all 266,760 interactions checked with generated row witnesses and decide +kernel. Fresh kernel replay passed; no Mathlib, native_decide, sorry, or added axioms."
+  },
+  "priority": {
+    "priorResolutionKnown": false,
+    "statement": "A wide prior-art audit through November 14, 2026 found no earlier qualifying public result establishing CAN(3,40,3) ≤ 86. Its verdict is LIKELY NOVEL within the documented search scope, not a claim of established historical priority."
+  },
+  "repository": {
+    "name": "covering-array-86-3-40-3",
+    "url": "https://github.com/cozuya/covering-array-86-3-40-3",
+    "programmingLanguage": "Lean 4"
+  },
+  "recordHtml": "<p>A strength-three ternary covering array has 40 columns whose entries come from three symbols. For every choice of three columns, all 27 ordered symbol triples must appear among its rows. The goal is to minimize the number of rows.</p>\n<p>At the November 14, 2026 research cutoff, the best qualifying bound located in the <a href=\"https://github.com/chrispbsmolen/ca-tools/blob/26270ecbd9dadd43a463cf5637606cb964577e4f/table/ca_frame.csv\">maintained covering-array table</a> was <b>87 rows</b>, using Bai XunDi’s 87×40 construction. An 86-row predecessor with 39 columns was also known, but does not cover the required 40 columns. The challenge was to give an explicit valid array with fewer than 87 rows and all 40 columns.</p>",
+  "constructionHtml": "<p>The <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/CA_86_3_40_3.txt\">explicit construction</a> has <b>86 rows and 40 columns</b>, with symbols 0, 1, 2. Every one of the 9,880 increasing column triples realizes all 27 symbol triples: <b>266,760 of 266,760 required interactions</b> are present.</p>\n<p>In Lean, <code>ColdHarvest.coldharvest_CA_86_3_40_3</code> proves that the certificate is a covering array. The theorem <code>ColdHarvest.CAN_3_40_3_le_86</code> then establishes <b>CAN(3,40,3) ≤ 86</b>, where CAN denotes the minimum feasible number of rows. This is an improved <em>upper bound</em>, not a proof that 86 is optimal or that 85 rows are impossible.</p>\n<p>Canonical certificate SHA-256: <code>7dc7ab1e231dce3cde5cc1c6b35c4911f34145fd4dfe5d80f8ea26b235b27f8a</code>.</p>",
+  "methodHtml": "<p>The array was obtained by AI-assisted postoptimization of <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/original/CA_87_3_40_3.txt\">Bai’s 87-row construction</a>. One row was removed, initially leaving 31 uncovered interactions. A coordinated-cell search reduced these to three; recognizing their shared aligned-column structure led to whole-pattern repair moves that eliminated the remaining gaps.</p>\n<p>Row deletion, tabu search, and postoptimization are established techniques; the claimed contribution is the smaller explicit construction, not a new general-purpose optimization method. The <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/PROVENANCE.md\">provenance report</a> describes the handoffs and limits of the preserved search history. The published certificate and Lean proof can be verified without rerunning the search.</p>",
+  "verificationHtml": "<p>The <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/CA86.lean\">main Lean file</a> proves <code>coldharvest_CA_86_3_40_3 : IsCoveringArray certificate</code> and <code>CAN_3_40_3_le_86 : CAN₃ 40 3 ≤ 86</code>. A proved Boolean-checker soundness theorem connects generated row witnesses to the quantified covering-array property; the checks themselves use <code>decide +kernel</code>, rather than native evaluation. An <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/Verification.lean\">independent statement audit</a> restates the theorem’s dimensions and minimum-row-count semantics.</p>\n<p>The recorded clean build and fresh <code>leanchecker --fresh</code> kernel replay passed on Lean <b>4.28.0</b>. The coverage theorem depends only on <code>propext</code> and <code>Quot.sound</code>; the minimum-row-count theorem additionally uses <code>Classical.choice</code>. There are no <code>sorry</code> declarations, added axioms, or <code>native_decide</code> dependencies in the proof. A separate Python checker exhaustively enumerates the original text matrix, and a deliberately invalid all-zero array is rejected.</p>\n<p><b>Reproduction:</b> see <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/REPRODUCE.md\">REPRODUCE.md</a> and run <code>./verify.sh</code> with the pinned Lean toolchain. The <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/VERIFICATION_REPORT.md\">verification report</a> and <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/evidence/verification.log\">recorded transcript</a> preserve commands, outcomes, timing, and resource measurements. Formal verification proves the stated mathematical upper bound; it does not establish novelty or optimality.</p>",
+  "priorArtHtml": "<p>A <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/PRIOR_ART.md\">wide prior-art investigation</a> with a November 14, 2026 cutoff concluded <b>LIKELY NOVEL</b> for the numerical bound. It examined maintained and historical covering-array tables, original construction datasets, derived bounds, indirect algebraic constructions, research papers, supplementary materials, and public repositories. No prior result establishing an upper bound of 86 or fewer rows at these parameters was located.</p>\n<p>The nearest verified predecessors include an 89-row bound for 40 columns, the Shokri–Moura 87×39 family member, and Bai XunDi’s deposited 87×40 and 86×39 arrays. The 86×39 case cannot imply this 40-column result merely by permuting rows, columns, or symbols. <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/prior-art/ColdHarvest_CA86_Prior_Art_Report.pdf\">The full audit</a> documents the searches, checked transformations, source citations, and access limitations.</p>\n<p>Neither an exhaustive mathematical certificate nor a broad literature search proves worldwide historical priority. No optimality result for 86 is asserted.</p>",
+  "provenanceHtml": "<p>Chris Ozols, with AI-assisted construction, independent computation, and Lean 4 formalization. The explicit construction was developed on November 14, 2026 using Bai XunDi’s published 87-row array as the starting point, itself extending the strength-three construction lineage of Kianoosh Shokri and Lucia Moura. Both predecessors are credited in the repository.</p>\n<p>The <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/PROVENANCE.md\">provenance</a> and <a href=\"https://github.com/cozuya/covering-array-86-3-40-3/blob/main/CITATION.cff\">citation metadata</a> describe attribution, source data and licenses, retained source handoffs, and independent checks. No submission to the record-table maintainer is represented as having occurred.</p>",
+  "links": [
+    {
+      "group": "Original records and cited constructions",
+      "items": [
+        {
+          "label": "Pinned ca-tools covering-array record table",
+          "url": "https://github.com/chrispbsmolen/ca-tools/blob/26270ecbd9dadd43a463cf5637606cb964577e4f/table/ca_frame.csv"
+        },
+        {
+          "label": "Bai XunDi’s 2026 deposited covering arrays",
+          "url": "https://doi.org/10.5281/zenodo.23787055"
+        },
+        {
+          "label": "Shokri–Moura strength-three construction paper",
+          "url": "https://doi.org/10.1002/jcd.21963"
+        }
+      ]
+    },
+    {
+      "group": "New construction and Lean proof",
+      "items": [
+        {
+          "label": "Complete GitHub repository",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3"
+        },
+        {
+          "label": "Explicit 86×40 array",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/CA_86_3_40_3.txt"
+        },
+        {
+          "label": "Readable mathematical proof",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/PROOF.md"
+        },
+        {
+          "label": "Main Lean theorems (CA86.lean)",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/CA86.lean"
+        },
+        {
+          "label": "Exact theorem and minimum-semantics audit (Verification.lean)",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/Verification.lean"
+        }
+      ]
+    },
+    {
+      "group": "Reproduction, novelty, and provenance",
+      "items": [
+        {
+          "label": "Reproduction instructions",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/REPRODUCE.md"
+        },
+        {
+          "label": "Verification report",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/VERIFICATION_REPORT.md"
+        },
+        {
+          "label": "Recorded verification transcript",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/evidence/verification.log"
+        },
+        {
+          "label": "Independent computational check",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/tree/main/crosscheck"
+        },
+        {
+          "label": "Prior-art analysis and search limitations",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/PRIOR_ART.md"
+        },
+        {
+          "label": "Full wide-RAG prior-art report (PDF)",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/prior-art/ColdHarvest_CA86_Prior_Art_Report.pdf"
+        },
+        {
+          "label": "Construction provenance",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/PROVENANCE.md"
+        },
+        {
+          "label": "Citation metadata",
+          "url": "https://github.com/cozuya/covering-array-86-3-40-3/blob/main/CITATION.cff"
+        }
+      ]
+    }
+  ]
+}
