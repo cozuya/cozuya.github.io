@@ -2,11 +2,12 @@
   "slug": "mdanalysis-persistence-length",
   "publicationStatus": "published",
   "order": 0,
-  "shortTitle": "MDAnalysis: PersistenceLength",
-  "summary": "Replaced the quadratic bond-pair matrix with hybrid direct/FFT autocorrelation. For long finite chains, this reduces O(n²) time and memory to O(n log n) time and O(n) memory. On four chains with 8,192 bonds each across eight frames, the complete analysis ran 387× faster.",
+  "shortTitle": "MDAnalysis",
+  "summary": "In PersistenceLength, we replaced the quadratic bond-pair matrix with hybrid direct/FFT autocorrelation, reducing long-chain complexity from O(n²) time and memory to O(n log n) time and O(n) memory. The complete analysis ran 387× faster for four 8,192-bond chains across eight frames.",
   "dateModified": "2026-11-14",
   "repository": {
     "url": "https://github.com/cozuya/mdanalysis"
   },
-  "commitUrl": "https://github.com/cozuya/mdanalysis/commit/2f201124a19b2e0a415dfa9224f62c4d065eab43"
+  "commitUrl": "https://github.com/cozuya/mdanalysis/commit/2f201124a19b2e0a415dfa9224f62c4d065eab43",
+  "projectUrl": "https://github.com/MDAnalysis/mdanalysis"
 }

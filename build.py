@@ -83,7 +83,7 @@ def validate(record, kind, path):
     where = path.relative_to(ROOT).as_posix()
     required = (
         ['slug', 'publicationStatus', 'shortTitle', 'summary', 'dateModified',
-         'repository', 'commitUrl']
+         'projectUrl', 'repository', 'commitUrl']
         if kind == 'optimization'
         else REQUIRED + [field for _, _, field in SECTIONS[kind]]
     )
@@ -98,6 +98,7 @@ def validate(record, kind, path):
         fail(f'{where}: dateModified must be YYYY-MM-DD')
     if kind == 'optimization':
         if (not record['commitUrl'].startswith('https://')
+                or not record['projectUrl'].startswith('https://')
                 or not record['repository'].get('url', '').startswith('https://')):
             fail(f'{where}: optimization links must use https')
         return
@@ -228,7 +229,7 @@ def render_index(site, key, records):
     if kind == 'optimization':
         entries = ''.join(
             f'<article class="entry">\n'
-            f'<h2>{esc(r["shortTitle"])}</h2>\n'
+            f'<h2><a href="{esc(r["projectUrl"])}">{esc(r["shortTitle"])}</a></h2>\n'
             f'<p>{esc(r["summary"])}</p>\n'
             f'<p class="entry-links"><a href="{esc(r["commitUrl"])}">Source commit</a> · '
             f'<a href="{esc(r["repository"]["url"])}">GitHub fork</a></p>\n'
