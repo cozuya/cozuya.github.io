@@ -101,6 +101,8 @@ def validate(record, kind, path):
                 or not record['projectUrl'].startswith('https://')
                 or not record['repository'].get('url', '').startswith('https://')):
             fail(f'{where}: optimization links must use https')
+        if record.get('pullRequestUrl') and not record['pullRequestUrl'].startswith('https://'):
+            fail(f'{where}: optimization pullRequestUrl must use https')
         return
     if record['verification'].get('trustModel') not in TRUST_LABELS:
         fail(f'{where}: verification.trustModel must be one of {sorted(TRUST_LABELS)}')
@@ -221,6 +223,13 @@ def prior_note(r, kind):
     return f'<p class="trust"><strong>Prior work:</strong> {known}; see the entry.</p>\n'
 
 
+def optimization_links(r):
+    links = [('Source commit', r['commitUrl']), ('GitHub fork', r['repository']['url'])]
+    if r.get('pullRequestUrl'):
+        links.append(('Pull request', r['pullRequestUrl']))
+    return ' · '.join(f'<a href="{esc(url)}">{label}</a>' for label, url in links)
+
+
 def render_index(site, key, records):
     meta = site['collections'][key]
     kind = meta['kind']
@@ -231,8 +240,7 @@ def render_index(site, key, records):
             f'<article class="entry">\n'
             f'<h2><a href="{esc(r["projectUrl"])}">{esc(r["shortTitle"])}</a></h2>\n'
             f'<p>{esc(r["summary"])}</p>\n'
-            f'<p class="entry-links"><a href="{esc(r["commitUrl"])}">Source commit</a> · '
-            f'<a href="{esc(r["repository"]["url"])}">GitHub fork</a></p>\n'
+            f'<p class="entry-links">{optimization_links(r)}</p>\n'
             f'</article>'
             for r in records
         )

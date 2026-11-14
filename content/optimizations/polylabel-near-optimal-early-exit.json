@@ -1,0 +1,14 @@
+{
+  "slug": "polylabel-near-optimal-early-exit",
+  "publicationStatus": "published",
+  "order": 1,
+  "shortTitle": "Polylabel",
+  "summary": "In Polylabel, we added a certified early exit for near-optimal label positions using enclosing-strip bounds, avoiding subdivision on thin polygons. Complete calls ran 13,700× faster (geometric mean) across 12 thin-polygon cases, with 15 control cases roughly unchanged.",
+  "dateModified": "2026-11-14",
+  "repository": {
+    "url": "https://github.com/cozuya/polylabel"
+  },
+  "commitUrl": "https://github.com/cozuya/polylabel/commit/2e5138c839ac1c033fbad4513385a293c161768a",
+  "pullRequestUrl": "https://github.com/mapbox/polylabel/pull/131",
+  "projectUrl": "https://github.com/mapbox/polylabel"
+}
