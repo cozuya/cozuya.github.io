@@ -81,7 +81,13 @@ def load_json(path):
 
 def validate(record, kind, path):
     where = path.relative_to(ROOT).as_posix()
-    for key in REQUIRED + [field for _, _, field in SECTIONS[kind]]:
+    required = (
+        ['slug', 'publicationStatus', 'shortTitle', 'summary', 'dateModified',
+         'repository', 'commitUrl']
+        if kind == 'optimization'
+        else REQUIRED + [field for _, _, field in SECTIONS[kind]]
+    )
+    for key in required:
         if not record.get(key):
             fail(f'{where}: missing {key}')
     if record['slug'] != path.stem or not SLUG.fullmatch(record['slug']):
@@ -90,6 +96,11 @@ def validate(record, kind, path):
         fail(f'{where}: publicationStatus must be "published" or "draft"')
     if not DATE.fullmatch(record['dateModified']):
         fail(f'{where}: dateModified must be YYYY-MM-DD')
+    if kind == 'optimization':
+        if (not record['commitUrl'].startswith('https://')
+                or not record['repository'].get('url', '').startswith('https://')):
+            fail(f'{where}: optimization links must use https')
+        return
     if record['verification'].get('trustModel') not in TRUST_LABELS:
         fail(f'{where}: verification.trustModel must be one of {sorted(TRUST_LABELS)}')
     for key in ('name', 'identifiers', 'sourceHtml'):
@@ -214,16 +225,27 @@ def render_index(site, key, records):
     kind = meta['kind']
     path = f'/{key}/'
     trail = [('Home', '/'), (meta['navLabel'], path)]
-    entries = ''.join(f'''
-<article class="entry">
-<h2><a href="{path}{esc(r['slug'])}/">{esc(r['shortTitle'])}</a></h2>
-<p class="ident">{esc(' · '.join(r['problem']['identifiers']))}</p>
-<p>{esc(r['summary'])}</p>
-<p class="trust"><strong>Verification:</strong> {esc(TRUST_LABELS[r['verification']['trustModel']])}.
-{esc(r['verification'].get('summary', ''))}</p>
-{prior_note(r, kind)}<p class="entry-links"><a href="{path}{esc(r['slug'])}/">Details and verification</a> ·
-<a href="{esc(r['repository']['url'])}">GitHub repository</a></p>
-</article>''' for r in records)
+    if kind == 'optimization':
+        entries = ''.join(
+            f'<article class="entry">\n'
+            f'<h2>{esc(r["shortTitle"])}</h2>\n'
+            f'<p>{esc(r["summary"])}</p>\n'
+            f'<p class="entry-links"><a href="{esc(r["commitUrl"])}">Source commit</a> · '
+            f'<a href="{esc(r["repository"]["url"])}">GitHub fork</a></p>\n'
+            f'</article>'
+            for r in records
+        )
+    else:
+        entries = ''.join(f'''
+    <article class="entry">
+    <h2><a href="{path}{esc(r['slug'])}/">{esc(r['shortTitle'])}</a></h2>
+    <p class="ident">{esc(' · '.join(r['problem']['identifiers']))}</p>
+    <p>{esc(r['summary'])}</p>
+    <p class="trust"><strong>Verification:</strong> {esc(TRUST_LABELS[r['verification']['trustModel']])}.
+    {esc(r['verification'].get('summary', ''))}</p>
+    {prior_note(r, kind)}<p class="entry-links"><a href="{path}{esc(r['slug'])}/">Details and verification</a> ·
+    <a href="{esc(r['repository']['url'])}">GitHub repository</a></p>
+    </article>''' for r in records)
     if not records:
         entries = f'<p class="empty">{esc(meta["empty"])}</p>'
     body = f'''{breadcrumb_nav(trail)}
@@ -235,7 +257,9 @@ def render_index(site, key, records):
          'description': meta['description'], 'inLanguage': 'en',
          'isPartOf': {'@id': site['url'] + '/#website'}, 'author': {'@id': site['url'] + '/#person'},
          'mainEntity': {'@type': 'ItemList', 'numberOfItems': len(records), 'itemListElement': [
-             {'@type': 'ListItem', 'position': i, 'url': f'{site["url"]}{path}{r["slug"]}/',
+             {'@type': 'ListItem', 'position': i,
+              'url': (r['commitUrl'] if kind == 'optimization'
+                      else f'{site["url"]}{path}{r["slug"]}/'),
               'name': r['shortTitle']} for i, r in enumerate(records, 1)]}},
         breadcrumbs(site, trail), person(site)]}
     return page(site, path, meta['title'], meta['description'], body, data, section=key)
@@ -335,8 +359,9 @@ def main():
     for key, records in collections.items():
         updated = max([site['dateModified']] + [r['dateModified'] for r in records])
         pages[f'/{key}/'] = (render_index(site, key, records), updated)
-        for r in records:
-            pages[f'/{key}/{r["slug"]}/'] = (render_detail(site, key, kinds[key], r), r['dateModified'])
+        if kinds[key] != 'optimization':
+            for r in records:
+                pages[f'/{key}/{r["slug"]}/'] = (render_detail(site, key, kinds[key], r), r['dateModified'])
     for path, (text, _) in pages.items():
         target = out / path.lstrip('/') / 'index.html'
         target.parent.mkdir(parents=True, exist_ok=True)

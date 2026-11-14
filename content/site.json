@@ -3,7 +3,7 @@
   "url": "https://cozuya.github.io",
   "headerUrl": "https://twolongos.com/",
   "tagline": "A human.",
-  "description": "Personal GitHub site of Chris Ozols, with mathematical proofs, counterexamples and refutations, and improvements on existing records.",
+  "description": "Personal GitHub site of Chris Ozols, with mathematical proofs, counterexamples and refutations, improvements on existing records, and optimizations of existing software.",
   "dateModified": "2026-11-14",
   "sameAs": [
     "https://github.com/cozuya",
@@ -37,6 +37,15 @@
       "description": "Improvements to published best-known records with reproducible Lean 4 verification and prior-art notes.",
       "introHtml": "<p>Improvements on existing records with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
       "empty": "No improvements are listed yet."
+    },
+    "optimizations": {
+      "kind": "optimization",
+      "navLabel": "Optimizations on existing solutions",
+      "heading": "Optimizations on existing solutions",
+      "title": "Optimizations on Existing Solutions — Chris Ozols",
+      "description": "Measured improvements to existing software implementations with links to the source commits.",
+      "introHtml": "<p>Performance improvements to existing software implementations.</p>",
+      "empty": "No optimizations are listed yet."
     }
   },
   "googleSiteVerification": "gPi5mai6E8ZivZuHUPB_G9HnSFFJUtSDG3MDQyxXG7g"
