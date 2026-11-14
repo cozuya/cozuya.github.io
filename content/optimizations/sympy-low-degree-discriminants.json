@@ -3,7 +3,7 @@
   "publicationStatus": "published",
   "order": 0,
   "shortTitle": "SymPy",
-  "summary": "In SymPy's Poly.discriminant(), we added direct quadratic and cubic formulas over polynomial coefficient domains, avoiding the expensive general resultant calculation. Complete calls ran 189× faster (geometric mean) across 13 benchmark cases, including 685× and 391× on issue #30517's examples.",
+  "summary": "In SymPy's Poly.discriminant(), we added direct quadratic and cubic formulas over polynomial coefficient domains, avoiding the expensive general resultant calculation. Complete calls ran 189× faster (geometric mean) across 13 benchmark cases, including 685× for a quadratic and 391× for a cubic.",
   "dateModified": "2026-11-14",
   "repository": {
     "url": "https://github.com/cozuya/sympy"
