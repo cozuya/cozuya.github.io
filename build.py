@@ -4,8 +4,9 @@
     python3 build.py            # build and validate
     python3 build.py --out DIR  # build somewhere else
 
-Each mathematical result is one JSON file in content/proofs/ or
-content/refutations/. Adding a result means adding one file; the index pages,
+Each mathematical result is one JSON file in content/proofs/,
+content/refutations/, or content/improvements/. Adding a result means adding
+one file; the index pages,
 sitemap, and structured data are generated from it. Fields whose names end in
 "Html" hold trusted HTML; every other string is plain text and is escaped.
 """
@@ -48,6 +49,14 @@ SECTIONS = {
         ('explanation', 'Why this falsifies the claim', 'explanationHtml'),
         ('verification', 'Verification', 'verificationHtml'),
         ('prior-art', 'Prior art and earlier refutations', 'priorArtHtml'),
+        ('provenance', 'Provenance', 'provenanceHtml'),
+    ],
+    'improvement': [
+        ('record', 'Previous record', 'recordHtml'),
+        ('construction', 'Improved construction', 'constructionHtml'),
+        ('method', 'How the construction was obtained', 'methodHtml'),
+        ('verification', 'Lean verification', 'verificationHtml'),
+        ('prior-art', 'Prior art and record status', 'priorArtHtml'),
         ('provenance', 'Provenance', 'provenanceHtml'),
     ],
 }
@@ -192,7 +201,11 @@ def render_home(site):
 def prior_note(r, kind):
     if not r['priority']['priorResolutionKnown']:
         return ''
-    known = 'An earlier proof is known' if kind == 'proof' else 'Earlier refutations are known'
+    known = {
+        'proof': 'An earlier proof is known',
+        'refutation': 'Earlier refutations are known',
+        'improvement': 'An equal or better earlier record is known',
+    }[kind]
     return f'<p class="trust"><strong>Prior work:</strong> {known}; see the entry.</p>\n'
 
 
@@ -240,9 +253,9 @@ def render_detail(site, key, kind, r):
     warning = f'<div class="warning" role="note">{r["scopeWarningHtml"]}</div>' \
         if r.get('scopeWarningHtml') else ''
     facts = [
-        ('Original problem', esc(problem['name'])),
+        ('Record target' if kind == 'improvement' else 'Original problem', esc(problem['name'])),
         ('Identifiers', esc(' · '.join(problem['identifiers']))),
-        ('Source', problem['sourceHtml']),
+        ('Previous record source' if kind == 'improvement' else 'Source', problem['sourceHtml']),
         ('Result', esc(r['summary'])),
         ('Verification', esc(TRUST_LABELS[r['verification']['trustModel']]) + '. '
          + esc(r['verification'].get('summary', ''))),
