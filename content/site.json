@@ -3,8 +3,8 @@
   "url": "https://cozuya.github.io",
   "headerUrl": "https://twolongos.com/",
   "tagline": "A human.",
-  "description": "Personal GitHub site of Chris Ozols, with mathematical proofs and refutations and their verification.",
-  "dateModified": "2026-11-02",
+  "description": "Personal GitHub site of Chris Ozols, with mathematical proofs, counterexamples and refutations, and improvements on existing records.",
+  "dateModified": "2026-11-14",
   "sameAs": [
     "https://github.com/cozuya",
     "https://twolongos.com/"
@@ -17,17 +17,26 @@
       "heading": "Mathematical proofs",
       "title": "Mathematical Proofs — Chris Ozols",
       "description": "Proofs of published mathematical conjectures with reproducible Lean verification, exact statements, trust models, and prior-art notes. No novelty or priority is claimed.",
-      "introHtml": "<p>These are mathematical proofs I have made available with reproducible verification. For each problem, I searched for an existing proof and did not find one in the sources I examined.</p>",
+      "introHtml": "<p>Mathematical proofs with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
       "empty": "No proofs are listed yet."
     },
     "refutations": {
       "kind": "refutation",
-      "navLabel": "Refutations",
+      "navLabel": "Counterexamples and refutations",
       "heading": "Mathematical refutations",
       "title": "Mathematical Refutations — Chris Ozols",
       "description": "Counterexamples to published mathematical claims, with exact witnesses, Lean verification, and prior-art notes, including disclosure of earlier refutations.",
-      "introHtml": "<p>These are counterexamples and refutations from my mathematical investigations. Each entry gives the statement being challenged, the counterexample, and the available verification. Prior-art searches and known earlier results, including earlier refutations, are documented with each entry.</p>",
+      "introHtml": "<p>Counterexamples and refutations with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
       "empty": "No entries are published yet. Entries are added once the counterexample can be checked independently and its prior-art notes, including any earlier refutations, are complete."
+    },
+    "improvements": {
+      "kind": "improvement",
+      "navLabel": "Improvements on existing records",
+      "heading": "Improvements on existing records",
+      "title": "Improvements on Existing Records — Chris Ozols",
+      "description": "Improvements to published best-known records with reproducible Lean 4 verification and prior-art notes.",
+      "introHtml": "<p>Improvements on existing records with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
+      "empty": "No improvements are listed yet."
     }
   },
   "googleSiteVerification": "gPi5mai6E8ZivZuHUPB_G9HnSFFJUtSDG3MDQyxXG7g"
