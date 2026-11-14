@@ -1,7 +1,7 @@
 {
   "slug": "polylabel-near-optimal-early-exit",
   "publicationStatus": "published",
-  "order": 1,
+  "order": 2,
   "shortTitle": "Polylabel",
   "summary": "In Polylabel, we added a certified early exit for near-optimal label positions using enclosing-strip bounds, avoiding subdivision on thin polygons. Complete calls ran 13,700× faster (geometric mean) across 12 thin-polygon cases, with 15 control cases roughly unchanged.",
   "dateModified": "2026-11-14",

@@ -1,0 +1,13 @@
+{
+  "slug": "sympy-low-degree-discriminants",
+  "publicationStatus": "published",
+  "order": 0,
+  "shortTitle": "SymPy",
+  "summary": "In SymPy's Poly.discriminant(), we added direct quadratic and cubic formulas over polynomial coefficient domains, avoiding the expensive general resultant calculation. Complete calls ran 189× faster (geometric mean) across 13 benchmark cases, including 685× and 391× on issue #30517's examples.",
+  "dateModified": "2026-11-14",
+  "repository": {
+    "url": "https://github.com/cozuya/sympy"
+  },
+  "commitUrl": "https://github.com/cozuya/sympy/commit/22cb6df7ea63daa0a298c3af5ca469af0e20e494",
+  "projectUrl": "https://github.com/sympy/sympy"
+}

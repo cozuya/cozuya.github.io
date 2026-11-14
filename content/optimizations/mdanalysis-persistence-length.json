@@ -1,7 +1,7 @@
 {
   "slug": "mdanalysis-persistence-length",
   "publicationStatus": "published",
-  "order": 0,
+  "order": 1,
   "shortTitle": "MDAnalysis",
   "summary": "In PersistenceLength, we replaced the quadratic bond-pair matrix with hybrid direct/FFT autocorrelation, reducing long-chain complexity from O(n²) time and memory to O(n log n) time and O(n) memory. The complete analysis ran 387× faster for four 8,192-bond chains across eight frames.",
   "dateModified": "2026-11-14",
