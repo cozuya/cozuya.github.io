@@ -1,7 +1,7 @@
 {
   "slug": "oeis-a057923",
   "publicationStatus": "published",
-  "order": 3,
+  "order": 4,
   "title": "OEIS A057923 — Two-Step Monotonicity Proof Available",
   "shortTitle": "OEIS A057923: two-step monotonicity",
   "description": "Lean-verified proof of Robert Israel's 2017 conjecture for OEIS A057923, the greedy bitwise-OR sequence: a(n+2) > a(n) for every n ≥ 0.",

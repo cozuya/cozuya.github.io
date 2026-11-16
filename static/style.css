@@ -39,6 +39,7 @@ header.site .home:hover, header.site .home:focus-visible { color: var(--link); t
 header.site ul { display: flex; flex-wrap: wrap; gap: .35rem 1.25rem; list-style: none; margin: 0; padding: 0; }
 header.site ul a, header.site ul a:visited { color: var(--link); }
 header.site ul a[aria-current="page"] { color: var(--fg); text-decoration: none; font-weight: 600; }
+header.site .nav-upcoming { color: var(--fg); text-decoration: underline; text-underline-offset: .15em; }
 main { padding-top: 1.5rem; padding-bottom: 3rem; }
 a { color: var(--link); text-underline-offset: .15em; }
 a:visited { color: var(--link-visited); }

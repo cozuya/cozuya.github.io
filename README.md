@@ -14,9 +14,10 @@ python3 -m http.server -d _site 8000
 | Path | Purpose |
 | --- | --- |
 | `content/site.json` | Name, links, collection titles and introductions |
-| `content/proofs/<slug>.json` | One file per proof, published at `/proofs/<slug>/` |
-| `content/refutations/<slug>.json` | One file per refutation, published at `/refutations/<slug>/` |
-| `content/improvements/<slug>.json` | One file per record improvement, published at `/improvements/<slug>/` |
+| `content/proofs/<slug>.json` | One file per proof, published at `/solves/<slug>/` |
+| `content/refutations/<slug>.json` | One file per refutation, published at `/refutations-of-accepted-claims/<slug>/` |
+| `content/improvements/<slug>.json` | One file per record improvement, published at `/records-broken/<slug>/` |
+| `content/optimizations/<slug>.json` | One file per solution improvement, listed at `/solution-improvements/` |
 | `static/` | Copied unchanged (stylesheet) |
 | `build.py` | Generates every page, `sitemap.xml`, `robots.txt`, and JSON-LD |
 | `indexnow.py` | Notifies IndexNow search engines of new or changed URLs |

@@ -3,8 +3,8 @@
   "url": "https://cozuya.github.io",
   "headerUrl": "https://twolongos.com/",
   "tagline": "A human.",
-  "description": "Personal GitHub site of Chris Ozols, with mathematical proofs, counterexamples and refutations, improvements on existing records, and optimizations of existing software.",
-  "dateModified": "2026-11-14",
+  "description": "Personal GitHub site of Chris Ozols, with solves of unsolved problems, refutations of accepted claims, standing records broken, and improvements to existing solutions.",
+  "dateModified": "2026-11-16",
   "sameAs": [
     "https://github.com/cozuya",
     "https://twolongos.com/"
@@ -13,40 +13,51 @@
   "collections": {
     "proofs": {
       "kind": "proof",
-      "navLabel": "Proofs",
-      "heading": "Mathematical proofs",
-      "title": "Mathematical Proofs — Chris Ozols",
+      "navLabel": "Solves of unsolved problems",
+      "heading": "Solves of unsolved problems",
+      "title": "Solves of unsolved problems — Chris Ozols",
       "description": "Proofs of published mathematical conjectures with reproducible Lean verification, exact statements, trust models, and prior-art notes. No novelty or priority is claimed.",
       "introHtml": "<p>Mathematical proofs with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
-      "empty": "No proofs are listed yet."
+      "empty": "No proofs are listed yet.",
+      "route": "solves"
     },
     "refutations": {
       "kind": "refutation",
-      "navLabel": "Counterexamples and refutations",
-      "heading": "Mathematical refutations",
-      "title": "Mathematical Refutations — Chris Ozols",
+      "navLabel": "Refutations of accepted claims",
+      "heading": "Refutations of accepted claims",
+      "title": "Refutations of accepted claims — Chris Ozols",
       "description": "Counterexamples to published mathematical claims, with exact witnesses, Lean verification, and prior-art notes, including disclosure of earlier refutations.",
       "introHtml": "<p>Counterexamples and refutations with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
-      "empty": "No entries are published yet. Entries are added once the counterexample can be checked independently and its prior-art notes, including any earlier refutations, are complete."
+      "empty": "No entries are published yet. Entries are added once the counterexample can be checked independently and its prior-art notes, including any earlier refutations, are complete.",
+      "route": "refutations-of-accepted-claims"
     },
     "improvements": {
       "kind": "improvement",
-      "navLabel": "Improvements on existing records",
-      "heading": "Improvements on existing records",
-      "title": "Improvements on Existing Records — Chris Ozols",
+      "navLabel": "Standing records broken",
+      "heading": "Standing records broken",
+      "title": "Standing records broken — Chris Ozols",
       "description": "Improvements to published best-known records with reproducible Lean 4 verification and prior-art notes.",
       "introHtml": "<p>Improvements on existing records with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
-      "empty": "No improvements are listed yet."
+      "empty": "No improvements are listed yet.",
+      "route": "records-broken"
     },
     "optimizations": {
       "kind": "optimization",
-      "navLabel": "Optimizations on existing solutions",
-      "heading": "Optimizations on existing solutions",
-      "title": "Optimizations on Existing Solutions — Chris Ozols",
+      "navLabel": "Improvements to existing solutions",
+      "heading": "Improvements to existing solutions",
+      "title": "Improvements to existing solutions — Chris Ozols",
       "description": "Measured improvements to existing software implementations with links to the source commits.",
       "introHtml": "<p>Performance improvements to existing software implementations.</p>",
-      "empty": "No optimizations are listed yet."
+      "empty": "No optimizations are listed yet.",
+      "route": "solution-improvements"
     }
   },
-  "googleSiteVerification": "gPi5mai6E8ZivZuHUPB_G9HnSFFJUtSDG3MDQyxXG7g"
+  "googleSiteVerification": "gPi5mai6E8ZivZuHUPB_G9HnSFFJUtSDG3MDQyxXG7g",
+  "upcomingCollections": [
+    "Discoveries of missing connections",
+    "Working results of previous research",
+    "Revivals of abandoned approaches",
+    "Formulations of new generalizations",
+    "Discoveries of overlooked AI capabilities"
+  ]
 }

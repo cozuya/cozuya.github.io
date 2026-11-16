@@ -1,0 +1,62 @@
+{
+  "slug": "type-b-eulerian-transformation",
+  "publicationStatus": "published",
+  "order": 2,
+  "title": "Real-rootedness of the type B Eulerian transformation — Chris Ozols",
+  "shortTitle": "Real-rootedness of the type B Eulerian transformation",
+  "description": "Lean-checked proof of the Eulerian-map claim in Athanasiadis’s Remark 7.2(b), for every degree. No novelty or priority claimed.",
+  "summary": "The type B Eulerian transformation sends every nonzero polynomial in Athanasiadis’s cone to a polynomial whose roots are all real and negative.",
+  "dateModified": "2026-11-16",
+  "keywords": [
+    "type B Eulerian transformation",
+    "Athanasiadis Remark 7.2(b)",
+    "real-rootedness",
+    "Lean 4"
+  ],
+  "problem": {
+    "name": "Athanasiadis’s type B Eulerian transformation conjecture",
+    "identifiers": [
+      "Athanasiadis, Remark 7.2(b)",
+      "arXiv:2302.00754v5"
+    ],
+    "sourceHtml": "<a href=\"https://arxiv.org/html/2302.00754v5#S7.Thmtheorem2.p3\">Remark 7.2(b) of <cite>On the real-rootedness of the Eulerian transformation</cite></a>."
+  },
+  "verification": {
+    "trustModel": "lean-kernel",
+    "summary": "Lean 4.35.0 with Mathlib and RealRooted; the repository includes the axiom audit and build results."
+  },
+  "priority": {
+    "priorResolutionKnown": false,
+    "statement": "No novelty or priority is claimed. Related work by Liu and Yan may imply the same result; that overlap is unresolved."
+  },
+  "repository": {
+    "name": "eulerian-transformation-type-b",
+    "url": "https://github.com/cozuya/eulerian-transformation-type-b",
+    "programmingLanguage": "Lean"
+  },
+  "statementHtml": "<p>Let ℬ be the linear map taking t<sup>m</sup> to the type B Eulerian polynomial B<sub>m</sub>(x). For every n ≥ 0 and every nonzero nonnegative linear combination of t<sup>n−k</sup>(1+t)<sup>k</sup> for 0 ≤ k ≤ n, its image under ℬ has degree n and all roots are real and strictly negative, counted with multiplicity.</p>",
+  "scopeHtml": "<p>This proves the Eulerian-map part of Remark 7.2(b). The companion derangement claim and the stronger conclusions about simple roots and strict interlacing are not part of this Lean result.</p>",
+  "proofOutlineHtml": "<p>The ordinary Eulerian polynomial provides a common interlacer for the basis images. The needed signs are preserved under nonnegative linear combinations. See the <a href=\"https://github.com/cozuya/eulerian-transformation-type-b/blob/main/PROOF.md\">proof</a>.</p>",
+  "verificationHtml": "<p>The <a href=\"https://github.com/cozuya/eulerian-transformation-type-b/blob/main/Verification.lean\">Lean restatement</a> uses Mathlib’s standard polynomial definitions. The <a href=\"https://github.com/cozuya/eulerian-transformation-type-b/blob/main/VERIFICATION_REPORT.md\">verification report</a> records a clean build and checks that the audited declarations use only <code>propext</code>, <code>Classical.choice</code>, and <code>Quot.sound</code>.</p>",
+  "priorArtHtml": "<p>The <a href=\"https://github.com/cozuya/eulerian-transformation-type-b/blob/main/PRIOR_ART.md\">prior-art review</a> documents the possible overlap with Liu and Yan and the limits of the search.</p>",
+  "provenanceHtml": "<p>Chris Ozols directed the work, with AI-assisted proof development and formalization on top of RealRooted. See the <a href=\"https://github.com/cozuya/eulerian-transformation-type-b/blob/main/PROVENANCE.md\">provenance notes</a>.</p>",
+  "links": [
+    {
+      "group": "Problem and proof",
+      "items": [
+        {
+          "label": "Original conjecture (Remark 7.2(b))",
+          "url": "https://arxiv.org/html/2302.00754v5#S7.Thmtheorem2.p3"
+        },
+        {
+          "label": "GitHub repository",
+          "url": "https://github.com/cozuya/eulerian-transformation-type-b"
+        },
+        {
+          "label": "Verification report",
+          "url": "https://github.com/cozuya/eulerian-transformation-type-b/blob/main/VERIFICATION_REPORT.md"
+        }
+      ]
+    }
+  ]
+}

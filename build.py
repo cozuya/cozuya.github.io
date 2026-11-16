@@ -140,6 +140,25 @@ def json_ld(data):
     return json.dumps(data, ensure_ascii=False, indent=1).replace('</', '<\\/')
 
 
+def collection_path(site, key):
+    return f'/{site["collections"][key]["route"]}/'
+
+
+def redirect_page(site, target):
+    canonical = esc(site['url'] + target)
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Page moved</title>
+<link rel="canonical" href="{canonical}">
+<meta http-equiv="refresh" content="0; url={esc(target)}">
+</head>
+<body><p>This page moved. <a href="{esc(target)}">Continue to the new address</a>.</p></body>
+</html>
+"""
+
+
 def page(site, path, title, description, body, data, section=None, og_type='website'):
     url = site['url'] + path
     canonical = '' if path == '/404.html' else f'<link rel="canonical" href="{esc(url)}">'
@@ -148,8 +167,10 @@ def page(site, path, title, description, body, data, section=None, og_type='webs
         verification = f'\n<meta name="google-site-verification" content="{esc(site["googleSiteVerification"])}">'
     current = ' aria-current="page"'
     nav = ''.join(
-        f'<li><a href="/{key}/"{current if key == section else ""}>'
+        f'<li><a href="{collection_path(site, key)}"{current if key == section else ""}>'
         f'{esc(value["navLabel"])}</a></li>' for key, value in site['collections'].items())
+    nav += ''.join(f'<li><span class="nav-upcoming">{esc(label)}</span></li>'
+                   for label in site['upcomingCollections'])
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -233,7 +254,7 @@ def optimization_links(r):
 def render_index(site, key, records):
     meta = site['collections'][key]
     kind = meta['kind']
-    path = f'/{key}/'
+    path = collection_path(site, key)
     trail = [('Home', '/'), (meta['navLabel'], path)]
     if kind == 'optimization':
         entries = ''.join(
@@ -276,8 +297,9 @@ def render_index(site, key, records):
 
 def render_detail(site, key, kind, r):
     meta = site['collections'][key]
-    path = f'/{key}/{r["slug"]}/'
-    trail = [('Home', '/'), (meta['navLabel'], f'/{key}/'), (r['shortTitle'], path)]
+    parent = collection_path(site, key)
+    path = f'{parent}{r["slug"]}/'
+    trail = [('Home', '/'), (meta['navLabel'], parent), (r['shortTitle'], path)]
     problem, priority = r['problem'], r['priority']
     earlier = ''
     if priority.get('earlier'):
@@ -320,7 +342,7 @@ def render_detail(site, key, kind, r):
         'headline': r['title'], 'name': r['title'], 'description': r['description'],
         'abstract': r['summary'], 'inLanguage': 'en', 'dateModified': r['dateModified'],
         'author': {'@id': site['url'] + '/#person'},
-        'isPartOf': {'@type': 'CollectionPage', 'url': f'{site["url"]}/{key}/'},
+        'isPartOf': {'@type': 'CollectionPage', 'url': site["url"] + parent},
         'about': {'@type': 'Thing', 'name': problem['name'],
                   'alternateName': problem.get('alternateNames', []),
                   'identifier': problem['identifiers']},
@@ -365,13 +387,23 @@ def main():
         shutil.rmtree(out)
     shutil.copytree(STATIC, out)
     pages = {'/': (render_home(site), site['dateModified'])}
+    redirects = {}
     for key, records in collections.items():
+        path = collection_path(site, key)
+        old_path = f'/{key}/'
         updated = max([site['dateModified']] + [r['dateModified'] for r in records])
-        pages[f'/{key}/'] = (render_index(site, key, records), updated)
+        pages[path] = (render_index(site, key, records), updated)
+        if old_path != path:
+            redirects[old_path] = path
         if kinds[key] != 'optimization':
             for r in records:
-                pages[f'/{key}/{r["slug"]}/'] = (render_detail(site, key, kinds[key], r), r['dateModified'])
-    for path, (text, _) in pages.items():
+                detail = f'{path}{r["slug"]}/'
+                pages[detail] = (render_detail(site, key, kinds[key], r), r['dateModified'])
+                if old_path != path:
+                    redirects[f'{old_path}{r["slug"]}/'] = detail
+    output = {path: text for path, (text, _) in pages.items()}
+    output.update((old, redirect_page(site, new)) for old, new in redirects.items())
+    for path, text in output.items():
         target = out / path.lstrip('/') / 'index.html'
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_text(text, encoding='utf-8')
