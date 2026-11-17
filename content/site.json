@@ -19,7 +19,14 @@
       "description": "Proofs of published mathematical conjectures with reproducible Lean verification, exact statements, trust models, and prior-art notes. No novelty or priority is claimed.",
       "introHtml": "<p>Mathematical proofs with reproducible verification in Lean 4.  For each one, I couldn't find a previously existing solution on the internet.</p>",
       "empty": "No proofs are listed yet.",
-      "route": "solves"
+      "route": "solves",
+      "crossListings": [
+        {
+          "collection": "generalizations",
+          "slug": "eulerian-three-term-real-rootedness",
+          "position": 3
+        }
+      ]
     },
     "refutations": {
       "kind": "refutation",

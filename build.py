@@ -260,6 +260,9 @@ def render_index(site, key, records):
     kind = meta['kind']
     path = collection_path(site, key)
     trail = [('Home', '/'), (meta['navLabel'], path)]
+
+    def detail_path(record):
+        return record.get('detailPath', f"{path}{record['slug']}/")
     if kind == 'optimization':
         entries = ''.join(
             f'<article class="entry">\n'
@@ -272,12 +275,12 @@ def render_index(site, key, records):
     else:
         entries = ''.join(f'''
     <article class="entry">
-    <h2><a href="{path}{esc(r['slug'])}/">{esc(r['shortTitle'])}</a></h2>
+    <h2><a href="{esc(detail_path(r))}">{esc(r['shortTitle'])}</a></h2>
     <p class="ident">{esc(' · '.join(r['problem']['identifiers']))}</p>
     <p>{esc(r['summary'])}</p>
     <p class="trust"><strong>Verification:</strong> {esc(TRUST_LABELS[r['verification']['trustModel']])}.
     {esc(r['verification'].get('summary', ''))}</p>
-    {prior_note(r, kind)}<p class="entry-links"><a href="{path}{esc(r['slug'])}/">Details and verification</a> ·
+    {prior_note(r, kind)}<p class="entry-links"><a href="{esc(detail_path(r))}">Details and verification</a> ·
     <a href="{esc(r['repository']['url'])}">GitHub repository</a></p>
     </article>''' for r in records)
     if not records:
@@ -293,7 +296,7 @@ def render_index(site, key, records):
          'mainEntity': {'@type': 'ItemList', 'numberOfItems': len(records), 'itemListElement': [
              {'@type': 'ListItem', 'position': i,
               'url': (r['commitUrl'] if kind == 'optimization'
-                      else f'{site["url"]}{path}{r["slug"]}/'),
+                      else site['url'] + detail_path(r)),
               'name': r['shortTitle']} for i, r in enumerate(records, 1)]}},
         breadcrumbs(site, trail), person(site)]}
     return page(site, path, meta['title'], meta['description'], body, data, section=key)
@@ -395,8 +398,17 @@ def main():
     for key, records in collections.items():
         path = collection_path(site, key)
         old_path = f'/{key}/'
-        updated = max([site['dateModified']] + [r['dateModified'] for r in records])
-        pages[path] = (render_index(site, key, records), updated)
+        index_records = list(records)
+        for listing in site['collections'][key].get('crossListings', []):
+            source, slug = listing['collection'], listing['slug']
+            record = next((r for r in collections.get(source, []) if r['slug'] == slug), None)
+            position = listing['position']
+            if record is None or not 1 <= position <= len(index_records) + 1:
+                fail(f'invalid cross-listing {source}/{slug} at position {position} in {key}')
+            index_records.insert(position - 1, dict(
+                record, detailPath=f'{collection_path(site, source)}{slug}/'))
+        updated = max([site['dateModified']] + [r['dateModified'] for r in index_records])
+        pages[path] = (render_index(site, key, index_records), updated)
         if old_path != path:
             redirects[old_path] = path
         if kinds[key] != 'optimization':
