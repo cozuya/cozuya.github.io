@@ -166,11 +166,16 @@ def page(site, path, title, description, body, data, section=None, og_type='webs
     if path == '/' and site.get('googleSiteVerification'):
         verification = f'\n<meta name="google-site-verification" content="{esc(site["googleSiteVerification"])}">'
     current = ' aria-current="page"'
-    nav = ''.join(
-        f'<li><a href="{collection_path(site, key)}"{current if key == section else ""}>'
-        f'{esc(value["navLabel"])}</a></li>' for key, value in site['collections'].items())
-    nav += ''.join(f'<li><span class="nav-upcoming">{esc(label)}</span></li>'
-                   for label in site['upcomingCollections'])
+    nav_items = []
+    for item in site['navigation']:
+        if item in site['collections']:
+            label = site['collections'][item]['navLabel']
+            selected = current if item == section else ''
+            nav_items.append(f'<li><a href="{collection_path(site, item)}"{selected}>'
+                             f'{esc(label)}</a></li>')
+        else:
+            nav_items.append(f'<li><span class="nav-upcoming">{esc(item)}</span></li>')
+    nav = ''.join(nav_items)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -234,11 +239,10 @@ def render_home(site):
 
 
 def prior_note(r, kind):
-    if not r['priority']['priorResolutionKnown']:
+    if kind == 'refutation' or not r['priority']['priorResolutionKnown']:
         return ''
     known = {
         'proof': 'An earlier proof is known',
-        'refutation': 'Earlier refutations are known',
         'improvement': 'An equal or better earlier record is known',
     }[kind]
     return f'<p class="trust"><strong>Prior work:</strong> {known}; see the entry.</p>\n'

@@ -18,6 +18,7 @@ python3 -m http.server -d _site 8000
 | `content/refutations/<slug>.json` | One file per refutation, published at `/refutations-of-accepted-claims/<slug>/` |
 | `content/improvements/<slug>.json` | One file per record improvement, published at `/records-broken/<slug>/` |
 | `content/optimizations/<slug>.json` | One file per solution improvement, listed at `/solution-improvements/` |
+| `content/generalizations/<slug>.json` | One file per generalization, published at `/generalizations/<slug>/` |
 | `static/` | Copied unchanged (stylesheet) |
 | `build.py` | Generates every page, `sitemap.xml`, `robots.txt`, and JSON-LD |
 | `indexnow.py` | Notifies IndexNow search engines of new or changed URLs |
@@ -36,7 +37,7 @@ Common fields: `slug`, `publicationStatus` (`published` or `draft`), `order`,
 `summary`), `priority`, `repository`, and grouped `links`. An optional
 `scopeWarningHtml` is shown prominently above everything else.
 
-- Proofs also need `statementHtml`, `scopeHtml`, `proofOutlineHtml`,
+- Proofs and generalizations also need `statementHtml`, `scopeHtml`, `proofOutlineHtml`,
   `verificationHtml`, `priorArtHtml`, and `provenanceHtml`.
 - Refutations need `claimHtml`, `counterexampleHtml`, `explanationHtml`,
   `verificationHtml`, `priorArtHtml`, and `provenanceHtml`.

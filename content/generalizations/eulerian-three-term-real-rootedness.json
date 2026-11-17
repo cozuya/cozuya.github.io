@@ -1,0 +1,62 @@
+{
+  "slug": "eulerian-three-term-real-rootedness",
+  "publicationStatus": "published",
+  "order": 1,
+  "title": "A sharp real-rootedness criterion for three-term Eulerian combinations — Chris Ozols",
+  "shortTitle": "A sharp real-rootedness criterion for three-term Eulerian combinations",
+  "description": "Lean-checked sharp extension of Athanasiadis’s Example 3.3 for three consecutive ordinary Eulerian polynomials.",
+  "summary": "Athanasiadis gave a sufficient condition for real-rootedness of combinations of three consecutive Eulerian polynomials. This result gives the exact coefficient region that works for every n ≥ 3.",
+  "dateModified": "2026-11-17",
+  "keywords": [
+    "Eulerian polynomials",
+    "real-rootedness",
+    "Athanasiadis Example 3.3",
+    "Lean 4"
+  ],
+  "problem": {
+    "name": "Real-rootedness of combinations of three consecutive Eulerian polynomials",
+    "identifiers": [
+      "Athanasiadis, Example 3.3",
+      "arXiv:2302.00754v5"
+    ],
+    "sourceHtml": "<a href=\"https://arxiv.org/html/2302.00754v5\">Example 3.3 of <cite>On the real-rootedness of the Eulerian transformation</cite></a>."
+  },
+  "verification": {
+    "trustModel": "lean-kernel",
+    "summary": "Lean 4.35.0 with Mathlib 4.35.0."
+  },
+  "priority": {
+    "priorResolutionKnown": false,
+    "statement": "No novelty or priority is claimed. The repository documents the scope and limits of the prior-art search."
+  },
+  "repository": {
+    "name": "eulerian-three-term-real-rootedness",
+    "url": "https://github.com/cozuya/eulerian-three-term-real-rootedness",
+    "programmingLanguage": "Lean"
+  },
+  "statementHtml": "<p>For fixed real coefficients b, c ≥ 0, the polynomial A<sub>n</sub>(x) + bA<sub>n−1</sub>(x) + cA<sub>n−2</sub>(x) has only real roots for every n ≥ 3 if and only if c ≤ b<sup>2</sup>/4 + b + 3. The boundary is included, and roots are counted with multiplicity.</p>",
+  "scopeHtml": "<p>With the coefficient of A<sub>n</sub> normalized to 1, this extends Athanasiadis’s sufficient region 1 ≥ b − c ≥ c ≥ 0 to a sharp uniform criterion for nonnegative b and c. It does not assert that the bound is sharp for each fixed n &gt; 3.</p>",
+  "proofOutlineHtml": "<p>The n = 3 discriminant gives the necessary bound. For sufficiency, a change of variables and interlacing control the signs at a set of test points, yielding enough sign changes to locate all the roots. See the <a href=\"https://github.com/cozuya/eulerian-three-term-real-rootedness/blob/main/PROOF.md\">proof</a>.</p>",
+  "verificationHtml": "<p>The <a href=\"https://github.com/cozuya/eulerian-three-term-real-rootedness/blob/main/Verification.lean\">exact-statement check</a> uses Mathlib’s standard polynomial definitions. The <a href=\"https://github.com/cozuya/eulerian-three-term-real-rootedness/blob/main/VERIFICATION_REPORT.md\">verification report</a> records the build and axiom audit.</p>",
+  "priorArtHtml": "<p>The <a href=\"https://github.com/cozuya/eulerian-three-term-real-rootedness/blob/main/PRIOR_ART.md\">prior-art review</a> documents related results and the limits of the search.</p>",
+  "provenanceHtml": "<p>Chris Ozols, with AI-assisted proof development and formalization. See the <a href=\"https://github.com/cozuya/eulerian-three-term-real-rootedness/blob/main/PROVENANCE.md\">provenance notes</a>.</p>",
+  "links": [
+    {
+      "group": "Original result and verification",
+      "items": [
+        {
+          "label": "Athanasiadis, Example 3.3",
+          "url": "https://arxiv.org/html/2302.00754v5"
+        },
+        {
+          "label": "GitHub repository",
+          "url": "https://github.com/cozuya/eulerian-three-term-real-rootedness"
+        },
+        {
+          "label": "Verification report",
+          "url": "https://github.com/cozuya/eulerian-three-term-real-rootedness/blob/main/VERIFICATION_REPORT.md"
+        }
+      ]
+    }
+  ]
+}

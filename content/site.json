@@ -3,7 +3,7 @@
   "url": "https://cozuya.github.io",
   "headerUrl": "https://twolongos.com/",
   "tagline": "A human.",
-  "description": "Personal GitHub site of Chris Ozols, with solves of unsolved problems, refutations of accepted claims, standing records broken, and improvements to existing solutions.",
+  "description": "Personal GitHub site of Chris Ozols, with solves of unsolved problems, refutations of accepted claims, standing records broken, improvements to existing solutions, and formulations of new generalizations.",
   "dateModified": "2026-11-16",
   "sameAs": [
     "https://github.com/cozuya",
@@ -50,14 +50,28 @@
       "introHtml": "<p>Performance improvements to existing software implementations.</p>",
       "empty": "No optimizations are listed yet.",
       "route": "solution-improvements"
+    },
+    "generalizations": {
+      "kind": "proof",
+      "navLabel": "Formulations of new generalizations",
+      "heading": "Formulations of new generalizations",
+      "title": "Formulations of new generalizations — Chris Ozols",
+      "description": "Extensions of published results, with exact statements, proof outlines, and reproducible Lean verification.",
+      "introHtml": "<p>Extensions of published results, with reproducible verification in Lean 4.</p>",
+      "empty": "No generalizations are listed yet.",
+      "route": "generalizations"
     }
   },
   "googleSiteVerification": "gPi5mai6E8ZivZuHUPB_G9HnSFFJUtSDG3MDQyxXG7g",
-  "upcomingCollections": [
-    "Discoveries of missing connections",
+  "navigation": [
+    "proofs",
+    "refutations",
+    "improvements",
+    "optimizations",
+    "Connections previously missed",
     "Working results of previous research",
     "Revivals of abandoned approaches",
-    "Formulations of new generalizations",
+    "generalizations",
     "Discoveries of overlooked AI capabilities"
   ]
 }
